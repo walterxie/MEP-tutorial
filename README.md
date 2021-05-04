@@ -221,9 +221,13 @@ The further reading about priors can be seen from the tutorial
 ## Setting the MCMC options
 
 For this dataset let’s initially set the chain length to `1000000` as this will
-run reasonably quickly on most modern computers. Set the sampling
-frequencies for the screen to `10000`, the trace log file to `400` and the trees
-file to `400`.
+run reasonably quickly on most modern computers. 
+Set the sampling frequencies for the screen to `10000`, 
+the trace log file to `400` and the trees file to `400`,
+change the log file name to `RSV2.log` and tree log file name to `RSV2.trees`.
+If you keep the default tree log file name, 
+the string `$(tree)` will be replaced by the name of the tree defined in the `Partitions` panel,
+here is "tree". 
 
 <figure>
 	<a name="fig:BEAUti\_mcmc"></a>
@@ -235,6 +239,7 @@ file to `400`.
 ## Running BEAST 
 
 Save the BEAST file (e.g. `RSV2.xml`) and run it in BEAST.
+We recommend you to use BEAGLE library, if it is installed in your machine.
 
 <figure>
 	<a name="fig:BEAST"></a>
@@ -246,11 +251,11 @@ Save the BEAST file (e.g. `RSV2.xml`) and run it in BEAST.
 Now run BEAST and when it asks for an input file, provide your newly
 created XML file as input. BEAST will then run until it has finished
 reporting information to the screen. The actual results files are save
-to the disk in the same location as your input file. The output to the
-screen will look something like this:
+to the disk in the same location as your input file. 
+The output to the screen will look something like this:
 
 ```
-                        BEAST v2.5.2, 2002-2019
+                        BEAST v2.6.4, 2002-2021
              Bayesian Evolutionary Analysis Sampling Trees
                        Designed and developed by
  Remco Bouckaert, Alexei J. Drummond, Andrew Rambaut & Marc A. Suchard
@@ -285,24 +290,24 @@ Gerton Lunter, Sidney Markowitz, Vladimir Minin, Michael Defoin Platel,
     ...
     
     ...
-         990000     -6108.0939     -5503.4454      -604.6484 1m45s/Msamples
-        1000000     -6102.6691     -5505.1198      -597.5493 1m44s/Msamples
+         990000     -6086.2206     -5487.4128      -598.8077 2m12s/Msamples
+        1000000     -6095.8302     -5507.0086      -588.8216 2m12s/Msamples
 
 Operator                                                   Tuning    #accept    #reject      Pr(m)  Pr(acc|m)
-ScaleOperator(StrictClockRateScaler.c:clock)              0.78157       8218      27756    0.03601    0.22844 
-UpDownOperator(strictClockUpDownOperator.c:clock)         0.84475        551      35258    0.03601    0.01539 Try setting scaleFactor to about 0.919
-ScaleOperator(KappaScaler.s:RSV2_1)                       0.38916        323        934    0.00120    0.25696 
-DeltaExchangeOperator(FixMeanMutationRatesOperator)       0.33840       4766      19363    0.02401    0.19752 
-ScaleOperator(KappaScaler.s:RSV2_2)                       0.39201        288        901    0.00120    0.24222 
-ScaleOperator(KappaScaler.s:RSV2_3)                       0.41649        271        964    0.00120    0.21943 
-ScaleOperator(CoalescentConstantTreeScaler.t:tree)        0.71887        273      35495    0.03601    0.00763 Try setting scaleFactor to about 0.848
-ScaleOperator(CoalescentConstantTreeRootScaler.t:tree)    0.64576       3140      33308    0.03601    0.08615 Try setting scaleFactor to about 0.804
-Uniform(CoalescentConstantUniformOperator.t:tree)               -     193184     166770    0.36014    0.53669 
-SubtreeSlide(CoalescentConstantSubtreeSlide.t:tree)       4.11043      28087     152489    0.18007    0.15554 
-Exchange(CoalescentConstantNarrow.t:tree)                       -      44602     135445    0.18007    0.24772 
-Exchange(CoalescentConstantWide.t:tree)                         -         84      35705    0.03601    0.00235 
-WilsonBalding(CoalescentConstantWilsonBalding.t:tree)           -        205      35530    0.03601    0.00574 
-ScaleOperator(PopSizeScaler.t:tree)                       0.60390      10084      26007    0.03601    0.27940 
+ScaleOperator(KappaScaler.s:RSV2_1)                       0.42080        347        870    0.00120    0.28513 
+DeltaExchangeOperator(FixMeanMutationRatesOperator)       0.38464       4095      19897    0.02401    0.17068 
+ScaleOperator(KappaScaler.s:RSV2_2)                       0.45190        352        797    0.00120    0.30635 
+ScaleOperator(KappaScaler.s:RSV2_3)                       0.40661        237        935    0.00120    0.20222 
+ScaleOperator(StrictClockRateScaler.c:clock)              0.78131       8494      27554    0.03601    0.23563 
+UpDownOperator(strictClockUpDownOperator.c:clock)         0.79531        407      35654    0.03601    0.01129 Try setting scaleFactor to about 0.892
+ScaleOperator(CoalescentConstantTreeScaler.t:tree)        0.71754        248      35399    0.03601    0.00696 Try setting scaleFactor to about 0.847
+ScaleOperator(CoalescentConstantTreeRootScaler.t:tree)    0.64353       3078      33055    0.03601    0.08519 Try setting scaleFactor to about 0.802
+Uniform(CoalescentConstantUniformOperator.t:tree)               -     193496     167179    0.36014    0.53648 
+SubtreeSlide(CoalescentConstantSubtreeSlide.t:tree)       3.74481      30940     148788    0.18007    0.17215 
+Exchange(CoalescentConstantNarrow.t:tree)                       -      45156     135076    0.18007    0.25054 
+Exchange(CoalescentConstantWide.t:tree)                         -         96      35804    0.03601    0.00267 
+WilsonBalding(CoalescentConstantWilsonBalding.t:tree)           -        194      35939    0.03601    0.00537 
+ScaleOperator(PopSizeScaler.t:tree)                       0.59143       9564      26350    0.03601    0.26630 
 
      Tuning: The value of the operator's tuning parameter, or '-' if the operator can't be optimized.
     #accept: The total number of times a proposal by this operator has been accepted.
@@ -310,9 +315,8 @@ ScaleOperator(PopSizeScaler.t:tree)                       0.60390      10084    
       Pr(m): The probability this operator is chosen in a step of the MCMC (i.e. the normalized weight).
   Pr(acc|m): The acceptance probability (#accept as a fraction of the total proposals for this operator).
 
-
-Total calculation time: 106.096 seconds
-End likelihood: -6102.669168760964
+Total calculation time: 146.628 seconds
+End likelihood: -6095.830272332731
 ```
 
 ## Analysing the BEAST output 
@@ -331,7 +335,7 @@ chain.
 <figure>
 	<a name="fig:Tracer1"></a>
 	<img style="width:80.0%;" src="figures/Tracer1.png" alt="Tracer1">
-	<figcaption>Figure 11: A screenshot of Tracer.</figcaption>
+	<figcaption>Figure 11: A screenshot of Tracer for short chain length.</figcaption>
 </figure>
 <br>
 
@@ -347,18 +351,23 @@ start of the chain as burn-in will render estimates of ESS unreliable.
 The simple response to this situation is that we need to run the chain
 for longer. Given the lowest ESS (for the constant coalescent) is
 `50`, it would suggest that we have to run the chain for at least
-4 times the length to get reasonable ESSs that are `>200`. So let’s go
-for a chain length of 6000000 and log every 5000. Go back to the `MCMC`
-options section in BEAUti, and create a new BEAST XML file with a longer
-chain length. Now run BEAST and load the new log file into Tracer (you
-can leave the old one loaded for comparison).
+4 times the length to get reasonable ESSs that are `>200`. 
 
-Click on the Trace tab and look at the raw trace plot.
+So let’s go back to BEAUti, set the chain length to 6000000 
+and log every 5000 in the `MCMC`panel, and rename the log file to `RSV2-long.log`
+and tree log file name to `RSV2-long.trees`..  
+Then we can create a new BEAST XML file `RSV2-long.xml` with a longer chain length. 
+Now run BEAST again and load the new log file into Tracer 
+(you can leave the old one loaded for comparison).
+Please note BEAST does not support multiple instances from GUI, 
+so you have to close the previous run before you can start a new one.
+
+Click on the `Trace` tab and look at the raw trace plot.
 
 <figure>
-	<a name="fig:Tracer\_density"></a>
+	<a name="fig:Tracer2"></a>
 	<img style="width:80.0%;" src="figures/Tracer2.png" alt="Tracer2">
-	<figcaption>Figure 12: tracer</figcaption>
+	<figcaption>Figure 12: A screenshot of Tracer for longer chain length.</figcaption>
 </figure>
 <br>
 
@@ -406,7 +415,7 @@ overlaid:
 
 ## Summarising the trees 
 
-Use the program TreeAnnotator to summarise the tree. TreeAnnotator is an application that
+Use the program `TreeAnnotator` to summarise the tree. TreeAnnotator is an application that
 comes with BEAST.
 
 <figure>
@@ -417,7 +426,7 @@ comes with BEAST.
 <br>
 
 
-Summary trees can be viewed using FigTree (a program separate from BEAST) and 
+Summary trees can be viewed using `FigTree` (a program separate from BEAST) and 
 DensiTree (distributed with BEAST).
 
 <figure>
@@ -427,7 +436,7 @@ DensiTree (distributed with BEAST).
 </figure>
 <br>
 
-Below a DensiTree with clade height bars for clades with over 50% support. Root
+Below a `DensiTree` with clade height bars for clades with over 50% support. Root
 canal tree represents maximum clade credibility tree.
 
 <figure>
