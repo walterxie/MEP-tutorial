@@ -84,8 +84,8 @@ If there is a pop-up dialog to ask you `what to add`,
 then you need to select `Import Alignment` from the drop-down list as shown in Figure 1.
 
 <figure>
-	<a name="fig:BEAUti\_split"></a>
-	<img style="width:80.0%;" src="figures//Add_partition.png" alt="Add partition">
+	<a name="fig:Add\_partition"></a>
+	<img style="width:50.0%;" src="figures//Add_partition.png" alt="Add partition">
 	<figcaption>Figure 1: Add the alignment from drag-and-drop</figcaption>
 </figure>
 <br>
