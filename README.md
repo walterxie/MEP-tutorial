@@ -123,7 +123,7 @@ By default all the taxa are assumed to have a date of zero (i.e. the
 sequences are assumed to be sampled at the same time). In this case, the
 RSVA sequences have been sampled at various dates going back to the
 1950s. The actual year of sampling is given in the name of each taxon
-and we could simply edit the value in the Date column of the table to
+and we could simply edit the value in the `Date` column of the table to
 reflect these. However, if the taxa names contain the calibration
 information, then a convenient way to specify the dates of the sequences
 in BEAUti is to click the checkbox `Use tip dates` and then use
@@ -152,12 +152,24 @@ The dates panel should now look something like this:
 </figure>
 <br>
 
+
+You may have noticed these dates are specified as `Since some time in the past`,
+which is also known by __forward__ time in a phylodynamic analysis.
+In this type of models, the node height of the sampled phylogentic tree  
+represents the number of substitutions per unit of time (here the unit is `year`).
+So, the tips having a zero node height will be the latest samples,
+and the root of the (time) tree will be the most recent common ancestor (MRCA) of all samples.
+To make sure that you select the correct option, you can simply look at the `Height` column.
+The heights of earlier samples should always be higher than those later samples.
+
+
+
 ## Setting the substitution model 
 
 We will use the HKY model with empirical base frequencies for all three
 partitions. To do this first link the site partitions and then choose
-HKY and Empirical from the Subst Model and Frequencies drop-boxes. Also
-check the estimate box for the Mutation Rate,which will finally trigger
+`HKY` and `Empirical` from the `Subst Model` and `Frequencies` drop-boxes. Also
+check the estimate box for the `Mutation Rate`, which will finally trigger
 to check the `Fix mean mutation rate` box.
 
 <figure>
@@ -179,16 +191,21 @@ configurations are same now.
 </figure>
 <br>
 
-## Clock model
+## Molecular clock model
 
 We are going to use the strict clock model, which is the default, so 
 no changes are necessary in the clock model panel.
 
 ## Priors 
 
-To set up the priors, select the `Priors` tab. Choose `Coalescent Constant Population` 
-for the tree prior. Set the prior on the clockRate
-parameter to a log-normal with `M=-5` and `S=1.25`.
+Priors are the part of your model.
+To set up the priors, select the `Priors` tab. 
+We are going to choose a simple tree prior for this analysis, 
+so select `Coalescent Constant Population`. 
+
+Then we need to set the prior on the `clockRate` parameter for our molecular clock model
+to a log-normal distribution with `M=-5` and `S=1.25`.
+The plot of this prior distribution and its quantiles are visualised on the right side.
 
 <figure>
 	<a name="fig:BEAUti\_priors"></a>
@@ -196,6 +213,10 @@ parameter to a log-normal with `M=-5` and `S=1.25`.
 	<figcaption>Figure 8: Priors</figcaption>
 </figure>
 <br>
+
+The further reading about priors can be seen from the tutorial
+[Prior selection](https://taming-the-beast.org/tutorials/Prior-selection/)
+
 
 ## Setting the MCMC options
 
