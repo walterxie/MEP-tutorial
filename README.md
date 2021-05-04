@@ -224,7 +224,7 @@ For this dataset let’s initially set the chain length to `1000000` as this wil
 run reasonably quickly on most modern computers. 
 Set the sampling frequencies for the screen to `10000`, 
 the trace log file to `400` and the trees file to `400`,
-change the log file name to `RSV2.log` and tree log file name to `RSV2.trees`.
+and also change the log file name to `RSV2.log` and tree log file name to `RSV2.trees`.
 If you keep the default tree log file name, 
 the string `$(tree)` will be replaced by the name of the tree defined in the `Partitions` panel,
 here is "tree". 
