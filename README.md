@@ -57,7 +57,9 @@ The following software will be used in this tutorial:
     [https://github.com/beagle-dev/beagle-lib/wiki](https://github.com/beagle-dev/beagle-lib/wiki).
 
 
-## The NEXUS alignment
+## Data
+
+### The NEXUS alignment
 
 The data is in a file called
 [RSV2.nex](https://github.com/CompEvol/beast2/blob/master/examples/nexus/RSV2.nex?raw=true).
@@ -73,7 +75,7 @@ This will make your file chooser to locate the `examples` directory
 when you click `Import Alignment`.
 
 
-## Import and split the alignment
+### Import and split the alignment
 
 There are two options to import this alignment into BEAUti.
 
@@ -103,12 +105,17 @@ frame 3` from the drop-down menu (Figure \[fig:BEAUti\_split\]).
 </figure>
 <br>
 
-This signifies that the first full codon starts at the third nucleotide
-in the alignment. This will create three rows in the partitions panel.
-You will have to re-link the tree and clock models across the three
+This signifies that the first full codon starts at the third nucleotide in the alignment, 
+and will create three rows in the partitions panel.
+
+### Linking or unlinking models
+
+You will have to link the tree and clock models across the three
 partitions (and name them `tree` and `clock` respectively) before
-continuing to the next step. The partition panel should now look
-something like this:
+continuing to the next step. 
+To achieve this goal, you need to select all three partitions first, 
+and respectively click the button `Link Clock Models` and `Link Trees`.
+The partition panel should now look something like this:
 
 <figure>
 	<a name="fig:BEAUti\_partition"></a>
@@ -117,7 +124,12 @@ something like this:
 </figure>
 <br>
 
-## Tip dates 
+The configuration here indicates we are using one individual substitution model 
+(including site model) at each partition, but making all partitions share 
+one molecular clock model and one tree prior. 
+
+
+### Tip dates 
 
 By default all the taxa are assumed to have a date of zero (i.e. the
 sequences are assumed to be sampled at the same time). In this case, the
@@ -163,11 +175,12 @@ To make sure that you select the correct option, you can simply look at the `Hei
 The heights of earlier samples should always be higher than those later samples.
 
 
+## Model
 
-## Setting the substitution model 
+### Setting the substitution model 
 
-We will use the HKY model with empirical base frequencies for all three
-partitions. To do this first link the site partitions and then choose
+We will use the HKY model with empirical base frequencies for all three partitions. 
+To do this first link the site partitions and then choose
 `HKY` and `Empirical` from the `Subst Model` and `Frequencies` drop-boxes. Also
 check the estimate box for the `Mutation Rate`, which will finally trigger
 to check the `Fix mean mutation rate` box.
@@ -191,19 +204,25 @@ configurations are same now.
 </figure>
 <br>
 
-## Molecular clock model
 
-We are going to use the strict clock model, which is the default, so 
-no changes are necessary in the clock model panel.
+The main objective here is to set up the analysis to estimate the relative mutation rates
+of codons, which are relative to a general rate defined in the molecular clock model.
 
-## Priors 
+
+### Molecular clock model
+
+We are going to use the strict clock model, which is the default, 
+so no changes are necessary in the clock model panel.
+You can optionally specify a starting value for the `clockRate` parameter. 
+
+### Priors 
 
 Priors are the part of your model.
 To set up the priors, select the `Priors` tab. 
 We are going to choose a simple tree prior for this analysis, 
 so select `Coalescent Constant Population`. 
 
-Then we need to set the prior on the `clockRate` parameter for our molecular clock model
+In this tutorial, we will set the prior on the `clockRate` parameter for our molecular clock model
 to a log-normal distribution with `M=-5` and `S=1.25`.
 The plot of this prior distribution and its quantiles are visualised on the right side.
 
@@ -220,13 +239,13 @@ The further reading about priors can be seen from the tutorial
 
 ## Setting the MCMC options
 
-For this dataset let’s initially set the chain length to `1000000` as this will
+For this dataset, let’s initially set the chain length to `1000000` as this will
 run reasonably quickly on most modern computers. 
 Set the sampling frequencies for the screen to `10000`, 
 the trace log file to `400` and the trees file to `400`,
 and also change the log file name to `RSV2.log` and tree log file name to `RSV2.trees`.
 If you keep the default tree log file name, 
-the string `$(tree)` will be replaced by the name of the tree defined in the `Partitions` panel,
+`$(tree)` will be replaced by the name defined at the `Tree` column in the `Partitions` panel,
 here is "tree". 
 
 <figure>
