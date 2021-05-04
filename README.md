@@ -3,7 +3,7 @@ author: Alexei Drummond, Remco Bouckaert, Walter Xie
 level: Beginner
 title: Time-stamped data
 subtitle: Time-stamped data
-beastversion: 2.5.2
+beastversion: 2.6.4
 ---
 
 # Time-stamped data
@@ -31,35 +31,65 @@ The aim of this tutorial is to obtain estimates for :
 
 The following software will be used in this tutorial:
 
+-   **Java 1.8** - either [Oracle Java](http://www.oracle.com/java/technologies/javase-downloads.html) 
+    or [OpenJDK](https://openjdk.java.net/install/).
+
 -   **BEAST** - this package contains the BEAST program, BEAUti,
     DensiTree, TreeAnnotator and other utility programs. This tutorial
-    is written for BEAST v`2.5.x`, which has support for multiple
-    partitions. It is available for download from\
-    [http://www.beast2.org](http://www.beast2.org).
+    is written for BEAST v`2.6.x`, which has support for multiple
+    partitions. It is available for download from [http://www.beast2.org](http://www.beast2.org).
 
 -   **Tracer** - this program is used to explore the output of BEAST
     (and other Bayesian MCMC programs). It graphically and quantitively
     summarises the distributions of continuous parameters and provides
     diagnostic information. At the time of writing, the current version
-    is v`1.7`. It is available for download from
+    is v`1.7.2`. It is available for download from
     [http://beast.community/tracer](http://beast.community/tracer).
 
 -   **FigTree** - this is an application for displaying and printing
     molecular phylogenies, in particular those obtained using BEAST. At
-    the time of writing, the current version is v`1.4.3`. It is
+    the time of writing, the current version is v`1.4.4`. It is
     available for download from [http://beast.community/figtree](http://beast.community/figtree).
+
+-   **Beagle** (optional) - this is a high-performance library 
+    that can perform the core calculations at the heart of     
+    most Bayesian and Maximum Likelihood phylogenetics packages.
+    [https://github.com/beagle-dev/beagle-lib/wiki](https://github.com/beagle-dev/beagle-lib/wiki).
+
 
 ## The NEXUS alignment
 
 The data is in a file called
 [RSV2.nex](https://github.com/CompEvol/beast2/blob/master/examples/nexus/RSV2.nex?raw=true).
-You can find it in the `examples/nexus` directory in the directory
-where BEAST was installed. Or click the link to download the data. After
-the data is opened in your web browser, right click mouse and save it as
-`RSV2.nex`.
-
 This file contains an alignment of 129 sequences from the G gene of RSVA
-virus, 629 nucleotides in length. Import this alignment into BEAUti.
+virus, 629 nucleotides in length. 
+Click the link, the data will be opened in your web browser, and then right click mouse and save it as
+`RSV2.nex` in your working directory.
+
+Alternatively, you can find it in the `examples/nexus` directory in the directory
+where BEAST was installed. If you prefer to use BEAUti, 
+you can select the menu `File` => `Set working dir` => `BEAST`. 
+This will make your file chooser to locate the `examples` directory 
+when you click `Import Alignment`.
+
+
+## Import and split the alignment
+
+There are two options to import this alignment into BEAUti.
+
+1. From the menu, to click `Import Alignment`.
+
+2. Drag and drop the file into the `Partitions` panel. 
+If there is a pop-up dialog to ask you `what to add`, 
+then you need to select `Import Alignment` from the drop-down list as shown in Figure 1.
+
+<figure>
+	<a name="fig:BEAUti\_split"></a>
+	<img style="width:80.0%;" src="figures//Add_partition.png" alt="Add partition">
+	<figcaption>Figure 1: Add the alignment from drag-and-drop</figcaption>
+</figure>
+<br>
+
 Because this is a protein-coding gene we are going to split the
 alignment into three partitions representing each of the three codon
 positions. To do this we will click the `Split` button at the
@@ -68,8 +98,8 @@ frame 3` from the drop-down menu (Figure \[fig:BEAUti\_split\]).
 
 <figure>
 	<a name="fig:BEAUti\_split"></a>
-	<img style="width:80.0%;" src="figures//BEAUti_split.png" alt="">
-	<figcaption>Figure 1: Split the alignment</figcaption>
+	<img style="width:80.0%;" src="figures//BEAUti_split.png" alt="split alignment">
+	<figcaption>Figure 2: Split the alignment</figcaption>
 </figure>
 <br>
 
@@ -82,8 +112,8 @@ something like this:
 
 <figure>
 	<a name="fig:BEAUti\_partition"></a>
-	<img style="width:80.0%;" src="figures/BEAUti_partition.png" alt="">
-	<figcaption>Figure 2: A screenshot of the Partitions tab in BEAUti</figcaption>
+	<img style="width:80.0%;" src="figures/BEAUti_partition.png" alt="BEAUti_partition">
+	<figcaption>Figure 3: A screenshot of the Partitions tab in BEAUti</figcaption>
 </figure>
 <br>
 
@@ -102,8 +132,8 @@ Clicking this will make a dialog box appear.
 
 <figure>
 	<a name="fig:BEAUti\_GuessDates"></a>
-	<img style="width:80.0%;" src="figures/BEAUti_GuessDates.png" alt="">
-	<figcaption>Figure 3: Guess dates dialog</figcaption>
+	<img style="width:80.0%;" src="figures/BEAUti_GuessDates.png" alt="BEAUti_GuessDates">
+	<figcaption>Figure 4: Guess dates dialog</figcaption>
 </figure>
 <br>
 
@@ -117,8 +147,8 @@ The dates panel should now look something like this:
 
 <figure>
 	<a name="fig:BEAUti\_dates"></a>
-	<img style="width:80.0%;" src="figures/BEAUti_dates.png" alt="">
-	<figcaption>Figure 4: Dates panel</figcaption>
+	<img style="width:80.0%;" src="figures/BEAUti_dates.png" alt="BEAUti_dates">
+	<figcaption>Figure 5: Dates panel</figcaption>
 </figure>
 <br>
 
@@ -132,8 +162,8 @@ to check the `Fix mean mutation rate` box.
 
 <figure>
 	<a name="fig:BEAUti\_Site\_Model"></a>
-	<img style="width:80.0%;" src="figures/BEAUti_Site_Model.png" alt="">
-	<figcaption>Figure 5: Site model</figcaption>
+	<img style="width:80.0%;" src="figures/BEAUti_Site_Model.png" alt="BEAUti_Site_Model">
+	<figcaption>Figure 6: Site model</figcaption>
 </figure>
 <br>
 
@@ -144,8 +174,8 @@ configurations are same now.
 
 <figure>
 	<a name="fig:cloneFrom"></a>
-	<img style="width:80.0%;" src="figures/cloneFrom.png" alt="">
-	<figcaption>Figure 6: Clone configuration from one site model to others.</figcaption>
+	<img style="width:80.0%;" src="figures/cloneFrom.png" alt="cloneFrom">
+	<figcaption>Figure 7: Clone configuration from one site model to others.</figcaption>
 </figure>
 <br>
 
@@ -162,8 +192,8 @@ parameter to a log-normal with `M=-5` and `S=1.25`.
 
 <figure>
 	<a name="fig:BEAUti\_priors"></a>
-	<img style="width:80.0%;" src="figures/BEAUti_priors.png" alt="">
-	<figcaption>Figure 7: Priors</figcaption>
+	<img style="width:80.0%;" src="figures/BEAUti_priors.png" alt="BEAUti_priors">
+	<figcaption>Figure 8: Priors</figcaption>
 </figure>
 <br>
 
@@ -176,8 +206,8 @@ file to `400`.
 
 <figure>
 	<a name="fig:BEAUti\_mcmc"></a>
-	<img style="width:80.0%;" src="figures/BEAUti_mcmc.png" alt="">
-	<figcaption>Figure 8: MCMC options</figcaption>
+	<img style="width:80.0%;" src="figures/BEAUti_mcmc.png" alt="BEAUti_mcmc">
+	<figcaption>Figure 9: MCMC options</figcaption>
 </figure>
 <br>
 
@@ -187,8 +217,8 @@ Save the BEAST file (e.g. `RSV2.xml`) and run it in BEAST.
 
 <figure>
 	<a name="fig:BEAST"></a>
-	<img style="width:80.0%;" src="figures/BEAST.png" alt="">
-	<figcaption>Figure 9: A screenshot of BEAST.</figcaption>
+	<img style="width:80.0%;" src="figures/BEAST.png" alt="BEAST">
+	<figcaption>Figure 10: A screenshot of BEAST.</figcaption>
 </figure>
 <br>
 
@@ -279,8 +309,8 @@ chain.
 
 <figure>
 	<a name="fig:Tracer1"></a>
-	<img style="width:80.0%;" src="figures/Tracer1.png" alt="">
-	<figcaption>Figure 10: A screenshot of Tracer.</figcaption>
+	<img style="width:80.0%;" src="figures/Tracer1.png" alt="Tracer1">
+	<figcaption>Figure 11: A screenshot of Tracer.</figcaption>
 </figure>
 <br>
 
@@ -306,8 +336,8 @@ Click on the Trace tab and look at the raw trace plot.
 
 <figure>
 	<a name="fig:Tracer\_density"></a>
-	<img style="width:80.0%;" src="figures/Tracer2.png" alt="">
-	<figcaption>Figure 11: tracer</figcaption>
+	<img style="width:80.0%;" src="figures/Tracer2.png" alt="Tracer2">
+	<figcaption>Figure 12: tracer</figcaption>
 </figure>
 <br>
 
@@ -329,8 +359,8 @@ similar to this:
 
 <figure>
 	<a name="fig:Tracer\_density"></a>
-	<img style="width:80.0%;" src="figures/Tracer_density.png" alt="">
-	<figcaption>Figure 12: marginal density in tracer</figcaption>
+	<img style="width:80.0%;" src="figures/Tracer_density.png" alt="Tracer_density">
+	<figcaption>Figure 13: marginal density in tracer</figcaption>
 </figure>
 <br>
 
@@ -348,8 +378,8 @@ overlaid:
 
 <figure>
 	<a name="fig:Tracer\_relativeRates"></a>
-	<img style="width:80.0%;" src="figures/Tracer_relativeRates.png" alt="">
-	<figcaption>Figure 13: The posterior probability densities for the relative substitution rates</figcaption>
+	<img style="width:80.0%;" src="figures/Tracer_relativeRates.png" alt="Tracer_relativeRates">
+	<figcaption>Figure 14: The posterior probability densities for the relative substitution rates</figcaption>
 </figure>
 <br>
 
@@ -360,8 +390,8 @@ comes with BEAST.
 
 <figure>
 	<a name="fig:treeannotator"></a>
-	<img style="width:80.0%;" src="figures/treeannotator.png" alt="">
-	<figcaption>Figure 14: TreeAnnotator for creating a summary tree from a posterior tree set.</figcaption>
+	<img style="width:80.0%;" src="figures/treeannotator.png" alt="treeannotator">
+	<figcaption>Figure 15: TreeAnnotator for creating a summary tree from a posterior tree set.</figcaption>
 </figure>
 <br>
 
@@ -371,8 +401,8 @@ DensiTree (distributed with BEAST).
 
 <figure>
 	<a name="fig:RSV2tree"></a>
-	<img style="width:80.0%;" src="figures/RSV2_mcc_tree.png" alt="">
-	<figcaption>Figure 15: The Maximum clade credibility tree for the G gene of 129 RSVA-2 viral samples.</figcaption>
+	<img style="width:80.0%;" src="figures/RSV2_mcc_tree.png" alt="RSV2_mcc_tree">
+	<figcaption>Figure 16: The Maximum clade credibility tree for the G gene of 129 RSVA-2 viral samples.</figcaption>
 </figure>
 <br>
 
@@ -381,8 +411,8 @@ canal tree represents maximum clade credibility tree.
 
 <figure>
 	<a name="fig:RSV2tree"></a>
-	<img style="width:80.0%;" src="figures/DensiTree.png" alt="">
-	<figcaption>Figure 16: The posterior tree set visualised in DensiTree.</figcaption>
+	<img style="width:80.0%;" src="figures/DensiTree.png" alt="DensiTree">
+	<figcaption>Figure 17: The posterior tree set visualised in DensiTree.</figcaption>
 </figure>
 <br>
 
@@ -404,7 +434,7 @@ which is a prior that ensures dependence between population sizes.
 <figure>
 	<a name="fig:BEAUti\_priors2"></a>
 	<img style="width:80.0%;" src="figures/BEAUti_priors2.png" alt="">
-	<figcaption>Figure 17: Priors</figcaption>
+	<figcaption>Figure 18: Priors</figcaption>
 </figure>
 <br>
 
@@ -420,8 +450,8 @@ number of changes, so it could be used as an alternative tree prior.
 
 <figure>
 	<a name="fig:BEAUti\_init"></a>
-	<img style="width:80.0%;" src="figures/BEAUti_init.png" alt="">
-	<figcaption>Figure 18: Initialization panel</figcaption>
+	<img style="width:80.0%;" src="figures/BEAUti_init.png" alt="BEAUti_init">
+	<figcaption>Figure 19: Initialization panel</figcaption>
 </figure>
 <br>
 
@@ -436,8 +466,8 @@ the menu Analysis/Bayesian Skyline Reconstruction.
 
 <figure>
 	<a name="fig:tracerBSP1"></a>
-	<img style="width:80.0%;" src="figures/tracerBSP1.png" alt="">
-	<figcaption>Figure 19: Bayesian Skyline Reconstruction in Tracer</figcaption>
+	<img style="width:80.0%;" src="figures/tracerBSP1.png" alt="tracerBSP1">
+	<figcaption>Figure 20: Bayesian Skyline Reconstruction in Tracer</figcaption>
 </figure>
 <br>
 
@@ -447,8 +477,8 @@ entry for age of youngest tip to 2002.
 
 <figure>
 	<a name="fig:tracerBSP2"></a>
-	<img style="width:80.0%;" src="figures/tracerBSP2.png" alt="">
-	<figcaption>Figure 20: Bayesian Skyline Reconstruction dialog in Tracer</figcaption>
+	<img style="width:80.0%;" src="figures/tracerBSP2.png" alt="tracerBSP2">
+	<figcaption>Figure 21: Bayesian Skyline Reconstruction dialog in Tracer</figcaption>
 </figure>
 <br>
 
@@ -458,8 +488,8 @@ the median and 95% HPD intervals are plotted. After selecting the
 
 <figure>
 	<a name="fig:tracerBSP3"></a>
-	<img style="width:80.0%;" src="figures/tracerBSP3.png" alt="">
-	<figcaption>Figure 21: Bayesian Skyline Reconstruction</figcaption>
+	<img style="width:80.0%;" src="figures/tracerBSP3.png" alt="tracerBSP3">
+	<figcaption>Figure 22: Bayesian Skyline Reconstruction</figcaption>
 </figure>
 <br>
 
