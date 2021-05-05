@@ -89,7 +89,6 @@ If there is a pop-up dialog to ask you `what to add`,
 then you need to select `Import Alignment` from the drop-down list as shown in Figure 1.
 
 <figure>
-	<a name="fig:Add\_partition"></a>
 	<img style="width:80.0%;" src="figures//Add_partition.png" alt="Add partition">
 	<figcaption>Figure 1: Add the alignment from drag-and-drop</figcaption>
 </figure>
@@ -99,10 +98,9 @@ Because this is a protein-coding gene we are going to split the
 alignment into three partitions representing each of the three codon
 positions. To do this we will click the `Split` button at the
 bottom of the `Partitions` panel and then select the `1 + 2 + 3
-frame 3` from the drop-down menu (Figure \[fig:BEAUti\_split\]).
+frame 3` from the drop-down menu (Figure 2).
 
 <figure>
-	<a name="fig:BEAUti\_split"></a>
 	<img style="width:80.0%;" src="figures//BEAUti_split.png" alt="split alignment">
 	<figcaption>Figure 2: Split the alignment</figcaption>
 </figure>
@@ -121,7 +119,6 @@ and respectively click the button `Link Clock Models` and `Link Trees`.
 The partition panel should now look something like this:
 
 <figure>
-	<a name="fig:BEAUti\_partition"></a>
 	<img style="width:80.0%;" src="figures/BEAUti_partition.png" alt="BEAUti_partition">
 	<figcaption>Figure 3: A screenshot of the Partitions tab in BEAUti</figcaption>
 </figure>
@@ -146,7 +143,6 @@ the `Configure` button at the top of the `Tip Dates` panel.
 Clicking this will make a dialog box appear.
 
 <figure>
-	<a name="fig:BEAUti\_GuessDates"></a>
 	<img style="width:80.0%;" src="figures/BEAUti_GuessDates.png" alt="BEAUti_GuessDates">
 	<figcaption>Figure 4: Guess dates dialog</figcaption>
 </figure>
@@ -161,7 +157,6 @@ the sample was isolated.
 The dates panel should now look something like this:
 
 <figure>
-	<a name="fig:BEAUti\_dates"></a>
 	<img style="width:80.0%;" src="figures/BEAUti_dates.png" alt="BEAUti_dates">
 	<figcaption>Figure 5: Dates panel</figcaption>
 </figure>
@@ -183,25 +178,26 @@ The heights of earlier samples should always be higher than those later samples.
 ### Setting the substitution model 
 
 We will use the HKY model with empirical base frequencies for all three partitions. 
-To do this first link the site partitions and then choose
-`HKY` and `Empirical` from the `Subst Model` and `Frequencies` drop-boxes. Also
-check the estimate box for the `Mutation Rate`, which will finally trigger
-to check the `Fix mean mutation rate` box.
+To do this, first switch to the `Site Model` panel, 
+and then choose `HKY` from the `Subst Model` drop-boxes,
+and `Empirical` from the `Frequencies` drop-boxes. 
+Also remember to check the `estimate` check-box for the `Mutation Rate`.
+After three mutation rates are all set to estimate, 
+it will eventually trigger to check the `Fix mean mutation rate` box.
 
 <figure>
-	<a name="fig:BEAUti\_Site\_Model"></a>
 	<img style="width:80.0%;" src="figures/BEAUti_Site_Model.png" alt="BEAUti_Site_Model">
 	<figcaption>Figure 6: Site model</figcaption>
 </figure>
 <br>
 
-Then, hold `shift` key to select all site models on the left side, and
-click `OK` to clone the setting from defined site model (Figure
-\[fig:cloneFrom\]). Go through each site model, as you can see, their
+Here, we can use `Clone` function to replicate the configuration. 
+Hold `shift` key to select all site models on the left side, 
+and click `OK` to clone the settings from a selected site model (Figure 7). 
+Go through each site model, as you can see, their
 configurations are same now.
 
 <figure>
-	<a name="fig:cloneFrom"></a>
 	<img style="width:80.0%;" src="figures/cloneFrom.png" alt="cloneFrom">
 	<figcaption>Figure 7: Clone configuration from one site model to others.</figcaption>
 </figure>
@@ -244,15 +240,16 @@ The further reading about priors can be seen from the tutorial
 
 For this dataset, let’s initially set the chain length to `1000000` as this will
 run reasonably quickly on most modern computers. 
-Set the sampling frequencies for the screen to `10000`, 
-the trace log file to `400` and the trees file to `400`,
-and also change the log file name to `RSV2.log` and tree log file name to `RSV2.trees`.
+Set the sampling frequencies for the screen logging to `10000`, 
+the trace log file to `500` and the trees file to `500`.
+So, how many samples are we expecting to have here?
+
+Also change the log file name to `RSV2.log` and tree log file name to `RSV2.trees`.
 If you keep the default tree log file name, 
 `$(tree)` will be replaced by the name defined at the `Tree` column in the `Partitions` panel,
 here is "tree". 
 
 <figure>
-	<a name="fig:BEAUti\_mcmc"></a>
 	<img style="width:80.0%;" src="figures/BEAUti_mcmc.png" alt="BEAUti_mcmc">
 	<figcaption>Figure 9: MCMC options</figcaption>
 </figure>
@@ -264,7 +261,6 @@ Save the BEAST file (e.g. `RSV2.xml`) and run it in BEAST.
 We recommend you to use BEAGLE library, if it is installed in your machine.
 
 <figure>
-	<a name="fig:BEAST"></a>
 	<img style="width:80.0%;" src="figures/BEAST.png" alt="BEAST">
 	<figcaption>Figure 10: A screenshot of BEAST.</figcaption>
 </figure>
@@ -312,24 +308,24 @@ Gerton Lunter, Sidney Markowitz, Vladimir Minin, Michael Defoin Platel,
     ...
     
     ...
-         990000     -6086.2206     -5487.4128      -598.8077 2m12s/Msamples
-        1000000     -6095.8302     -5507.0086      -588.8216 2m12s/Msamples
+         990000     -6077.5552     -5488.4548      -589.1004 1m59s/Msamples
+        1000000     -6088.1480     -5501.3390      -586.8090 1m59s/Msamples
 
 Operator                                                   Tuning    #accept    #reject      Pr(m)  Pr(acc|m)
-ScaleOperator(KappaScaler.s:RSV2_1)                       0.42080        347        870    0.00120    0.28513 
-DeltaExchangeOperator(FixMeanMutationRatesOperator)       0.38464       4095      19897    0.02401    0.17068 
-ScaleOperator(KappaScaler.s:RSV2_2)                       0.45190        352        797    0.00120    0.30635 
-ScaleOperator(KappaScaler.s:RSV2_3)                       0.40661        237        935    0.00120    0.20222 
-ScaleOperator(StrictClockRateScaler.c:clock)              0.78131       8494      27554    0.03601    0.23563 
-UpDownOperator(strictClockUpDownOperator.c:clock)         0.79531        407      35654    0.03601    0.01129 Try setting scaleFactor to about 0.892
-ScaleOperator(CoalescentConstantTreeScaler.t:tree)        0.71754        248      35399    0.03601    0.00696 Try setting scaleFactor to about 0.847
-ScaleOperator(CoalescentConstantTreeRootScaler.t:tree)    0.64353       3078      33055    0.03601    0.08519 Try setting scaleFactor to about 0.802
-Uniform(CoalescentConstantUniformOperator.t:tree)               -     193496     167179    0.36014    0.53648 
-SubtreeSlide(CoalescentConstantSubtreeSlide.t:tree)       3.74481      30940     148788    0.18007    0.17215 
-Exchange(CoalescentConstantNarrow.t:tree)                       -      45156     135076    0.18007    0.25054 
-Exchange(CoalescentConstantWide.t:tree)                         -         96      35804    0.03601    0.00267 
-WilsonBalding(CoalescentConstantWilsonBalding.t:tree)           -        194      35939    0.03601    0.00537 
-ScaleOperator(PopSizeScaler.t:tree)                       0.59143       9564      26350    0.03601    0.26630 
+ScaleOperator(StrictClockRateScaler.c:clock)              0.77399       8248      28112    0.03601    0.22684 
+UpDownOperator(strictClockUpDownOperator.c:clock)         0.78496        373      35684    0.03601    0.01034 Try setting scaleFactor to about 0.886
+ScaleOperator(KappaScaler.s:RSV2_1)                       0.37264        338        976    0.00120    0.25723 
+DeltaExchangeOperator(FixMeanMutationRatesOperator)       0.34838       4430      19492    0.02401    0.18519 
+ScaleOperator(KappaScaler.s:RSV2_2)                       0.40247        299        847    0.00120    0.26091 
+ScaleOperator(KappaScaler.s:RSV2_3)                       0.45478        330        865    0.00120    0.27615 
+ScaleOperator(CoalescentConstantTreeScaler.t:tree)        0.73340        280      35823    0.03601    0.00776 Try setting scaleFactor to about 0.856
+ScaleOperator(CoalescentConstantTreeRootScaler.t:tree)    0.66679       3093      33122    0.03601    0.08541 Try setting scaleFactor to about 0.817
+Uniform(CoalescentConstantUniformOperator.t:tree)               -     193562     167207    0.36014    0.53653 
+SubtreeSlide(CoalescentConstantSubtreeSlide.t:tree)       3.42114      33361     145861    0.18007    0.18614 
+Exchange(CoalescentConstantNarrow.t:tree)                       -      45016     135299    0.18007    0.24965 
+Exchange(CoalescentConstantWide.t:tree)                         -         86      35459    0.03601    0.00242 
+WilsonBalding(CoalescentConstantWilsonBalding.t:tree)           -        189      35941    0.03601    0.00523 
+ScaleOperator(PopSizeScaler.t:tree)                       0.58627       9290      26418    0.03601    0.26017 
 
      Tuning: The value of the operator's tuning parameter, or '-' if the operator can't be optimized.
     #accept: The total number of times a proposal by this operator has been accepted.
@@ -337,8 +333,9 @@ ScaleOperator(PopSizeScaler.t:tree)                       0.59143       9564    
       Pr(m): The probability this operator is chosen in a step of the MCMC (i.e. the normalized weight).
   Pr(acc|m): The acceptance probability (#accept as a fraction of the total proposals for this operator).
 
-Total calculation time: 146.628 seconds
-End likelihood: -6095.830272332731
+
+Total calculation time: 122.201 seconds
+End likelihood: -6088.148078992193
 ```
 
 ## Analysing the BEAST output 
@@ -355,26 +352,26 @@ the raw trace, that is, the sampled values against the step in the MCMC
 chain.
 
 <figure>
-	<a name="fig:Tracer1"></a>
 	<img style="width:80.0%;" src="figures/Tracer1.png" alt="Tracer1">
 	<figcaption>Figure 11: A screenshot of Tracer for a short chain length.</figcaption>
 </figure>
 <br>
 
-Here you can see how the samples are correlated. There are 2500 samples
-in the trace (we ran the MCMC for steps sampling every 400) but adjacent
-samples often tend to have similar values. The ESS for the prior is about `56`, 
-so we are only getting 1 independent sample to every `56 ~ 2500/45` actual samples). 
-With a short run such as this one, it may also be the case that the default burn-in
-of 10% of the chain length is inadequate. 
+Here you can see how the samples are correlated. There are 2000 samples
+in the trace (we ran the MCMC for steps sampling every 500) but adjacent
+samples often tend to have similar values. 
+The ESS for the `clockRate` is about `34`, after removing 10% burn-in.
+So we are only getting 1 independent sample to every `52 ~ 1800/34` actual samples). 
+With a short run such as this one, it may also be the case that 
+the default burn-in (10%) of the chain length is inadequate. 
 Not excluding enough of the start of the chain as burn-in will render estimates of ESS unreliable.
 
 The simple response to this situation is that we need to run the chain for longer. 
-Given the lowest ESS (e.g. for the constant coalescent parameter) is `56`, 
+Given the lowest ESS (e.g. for the constant coalescent parameter) is `24`, 
 it would suggest that we have to run the chain for at least
-4 times the length to get reasonable ESSs that are `>200`. 
+8 times the length to get reasonable ESSs that are `>200`. 
 
-So let’s go back to BEAUti, set the chain length to 6000000 and log every 5000 
+So let’s go back to BEAUti, set the chain length to 8000000 and log every 4000 
 in the `MCMC`panel, and rename the log file to `RSV2-long.log`
 and tree log file name to `RSV2-long.trees`. 
 Then we can create a new BEAST XML file `RSV2-long.xml` with a longer chain length. 
@@ -386,14 +383,14 @@ so you have to close the previous run before you can start a new one.
 Click on the `Trace` tab and look at the raw trace plot.
 
 <figure>
-	<a name="fig:Tracer2"></a>
 	<img style="width:80.0%;" src="figures/Tracer2.png" alt="Tracer2">
 	<figcaption>Figure 12: A screenshot of Tracer for a long chain length.</figcaption>
 </figure>
 <br>
 
-We have chosen options that produce 12000 samples and with an ESS
-of about `253` there is still auto-correlation between the samples but
+We have chosen options that produce the same number of samples 
+but with an better ESS. 
+There is still auto-correlation between the samples but
 `>200` effectively independent samples will now provide a very good
 estimate of the posterior distribution. There are no obvious trends in
 the plot which would suggest that the MCMC has not yet converged, and
@@ -428,7 +425,6 @@ for the relative substitution rate at all three codon positions
 overlaid:
 
 <figure>
-	<a name="fig:Tracer\_relativeRates"></a>
 	<img style="width:80.0%;" src="figures/Tracer_relativeRates.png" alt="Tracer_relativeRates">
 	<figcaption>Figure 14: The posterior probability densities for the relative substitution rates</figcaption>
 </figure>
@@ -448,7 +444,6 @@ More details about settings are available from [here](https://www.beast2.org/tre
 
 
 <figure>
-	<a name="fig:treeannotator"></a>
 	<img style="width:80.0%;" src="figures/treeannotator.png" alt="treeannotator">
 	<figcaption>Figure 15: TreeAnnotator for creating a summary tree from a posterior tree set.</figcaption>
 </figure>
@@ -479,7 +474,6 @@ by taking away their heights from 2002.
 
 
 <figure>
-	<a name="fig:RSV2tree"></a>
 	<img style="width:80.0%;" src="figures/RSV2_mcc_tree.png" alt="RSV2_mcc_tree">
 	<figcaption>Figure 16: The Maximum clade credibility tree for the G gene of 129 RSVA-2 viral samples.</figcaption>
 </figure>
@@ -491,7 +485,6 @@ Below a `DensiTree` with clade height bars for clades with over 50% support. Roo
 canal tree represents maximum clade credibility tree.
 
 <figure>
-	<a name="fig:RSV2tree"></a>
 	<img style="width:80.0%;" src="figures/DensiTree.png" alt="DensiTree">
 	<figcaption>Figure 17: The posterior tree set visualised in DensiTree.</figcaption>
 </figure>
@@ -517,7 +510,6 @@ item is added to the priors called `Markov chained population sizes`
 which is a prior that ensures dependence between population sizes.
 
 <figure>
-	<a name="fig:BEAUti\_priors2"></a>
 	<img style="width:80.0%;" src="figures/BEAUti_priors2.png" alt="">
 	<figcaption>Figure 18: Priors</figcaption>
 </figure>
@@ -534,7 +526,6 @@ longer. The extended Bayesian skyline plot automatically detects the
 number of changes, so it could be used as an alternative tree prior.
 
 <figure>
-	<a name="fig:BEAUti\_init"></a>
 	<img style="width:80.0%;" src="figures/BEAUti_init.png" alt="BEAUti_init">
 	<figcaption>Figure 19: Initialization panel</figcaption>
 </figure>
@@ -550,7 +541,6 @@ To plot the population history, load the log file in tracer and select
 the menu Analysis/Bayesian Skyline Reconstruction.
 
 <figure>
-	<a name="fig:tracerBSP1"></a>
 	<img style="width:80.0%;" src="figures/tracerBSP1.png" alt="tracerBSP1">
 	<figcaption>Figure 20: Bayesian Skyline Reconstruction in Tracer</figcaption>
 </figure>
@@ -561,7 +551,6 @@ the log file. Also, since the youngest sample is from 2002, change the
 entry for age of youngest tip to 2002.
 
 <figure>
-	<a name="fig:tracerBSP2"></a>
 	<img style="width:80.0%;" src="figures/tracerBSP2.png" alt="tracerBSP2">
 	<figcaption>Figure 21: Bayesian Skyline Reconstruction dialog in Tracer</figcaption>
 </figure>
@@ -572,7 +561,6 @@ the median and 95% HPD intervals are plotted. After selecting the
 `solid interval` checkbox, the graph should look something like this.
 
 <figure>
-	<a name="fig:tracerBSP3"></a>
 	<img style="width:80.0%;" src="figures/tracerBSP3.png" alt="tracerBSP3">
 	<figcaption>Figure 22: Bayesian Skyline Reconstruction</figcaption>
 </figure>

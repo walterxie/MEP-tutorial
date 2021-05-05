@@ -291,9 +291,9 @@ spec="Alignment">
     
     <map name="OneOnX" >beast.math.distributions.OneOnX</map>
     
-    <run id="mcmc" spec="MCMC" chainLength="6000000">
+    <run id="mcmc" spec="MCMC" chainLength="8000000">
             
-        <state id="state" spec="State" storeEvery="5000">
+        <state id="state" spec="State" storeEvery="8000">
                     
             <tree id="Tree.t:tree" spec="beast.evolution.tree.Tree" name="stateNode">
                             
@@ -315,11 +315,11 @@ spec="Alignment">
                         
             </tree>
                     
+            <parameter id="clockRate.c:clock" spec="parameter.RealParameter" name="stateNode">1.0</parameter>
+                    
             <parameter id="kappa.s:RSV2_1" spec="parameter.RealParameter" lower="0.0" name="stateNode">2.0</parameter>
                     
             <parameter id="mutationRate.s:RSV2_1" spec="parameter.RealParameter" name="stateNode">1.0</parameter>
-                    
-            <parameter id="mutationRate.s:RSV2_2" spec="parameter.RealParameter" name="stateNode">1.0</parameter>
                     
             <parameter id="kappa.s:RSV2_2" spec="parameter.RealParameter" lower="0.0" name="stateNode">2.0</parameter>
                     
@@ -327,9 +327,9 @@ spec="Alignment">
                     
             <parameter id="kappa.s:RSV2_3" spec="parameter.RealParameter" lower="0.0" name="stateNode">2.0</parameter>
                     
-            <parameter id="clockRate.c:clock" spec="parameter.RealParameter" name="stateNode">1.0</parameter>
-                    
             <parameter id="popSize.t:tree" spec="parameter.RealParameter" name="stateNode">0.3</parameter>
+                    
+            <parameter id="mutationRate.s:RSV2_2" spec="parameter.RealParameter" name="stateNode">1.0</parameter>
                 
         </state>
             
@@ -485,6 +485,16 @@ filter="2::3"/>
                 
         </distribution>
             
+        <operator id="StrictClockRateScaler.c:clock" spec="ScaleOperator" parameter="@clockRate.c:clock" weight="3.0"/>
+            
+        <operator id="strictClockUpDownOperator.c:clock" spec="UpDownOperator" scaleFactor="0.75" weight="3.0">
+                    
+            <up idref="clockRate.c:clock"/>
+                    
+            <down idref="Tree.t:tree"/>
+                
+        </operator>
+            
         <operator id="KappaScaler.s:RSV2_1" spec="ScaleOperator" parameter="@kappa.s:RSV2_1" scaleFactor="0.5" weight="0.1"/>
             
         <operator id="FixMeanMutationRatesOperator" spec="DeltaExchangeOperator" delta="0.75" weight="2.0">
@@ -503,16 +513,6 @@ filter="2::3"/>
             
         <operator id="KappaScaler.s:RSV2_3" spec="ScaleOperator" parameter="@kappa.s:RSV2_3" scaleFactor="0.5" weight="0.1"/>
             
-        <operator id="StrictClockRateScaler.c:clock" spec="ScaleOperator" parameter="@clockRate.c:clock" weight="3.0"/>
-            
-        <operator id="strictClockUpDownOperator.c:clock" spec="UpDownOperator" scaleFactor="0.75" weight="3.0">
-                    
-            <up idref="clockRate.c:clock"/>
-                    
-            <down idref="Tree.t:tree"/>
-                
-        </operator>
-            
         <operator id="CoalescentConstantTreeScaler.t:tree" spec="ScaleOperator" scaleFactor="0.5" tree="@Tree.t:tree" weight="3.0"/>
             
         <operator id="CoalescentConstantTreeRootScaler.t:tree" spec="ScaleOperator" rootOnly="true" scaleFactor="0.5" tree="@Tree.t:tree" weight="3.0"/>
@@ -529,7 +529,7 @@ filter="2::3"/>
             
         <operator id="PopSizeScaler.t:tree" spec="ScaleOperator" parameter="@popSize.t:tree" weight="3.0"/>
             
-        <logger id="tracelog" spec="Logger" fileName="RSV2-long.log" logEvery="5000" model="@posterior" sanitiseHeaders="true" sort="smart">
+        <logger id="tracelog" spec="Logger" fileName="RSV2-long.log" logEvery="4000" model="@posterior" sanitiseHeaders="true" sort="smart">
                     
             <log idref="posterior"/>
                     
@@ -545,11 +545,11 @@ filter="2::3"/>
                     
             <log idref="treeLikelihood.RSV2_1"/>
                     
+            <log idref="clockRate.c:clock"/>
+                    
             <log idref="kappa.s:RSV2_1"/>
                     
             <log idref="mutationRate.s:RSV2_1"/>
-                    
-            <log idref="mutationRate.s:RSV2_2"/>
                     
             <log idref="kappa.s:RSV2_2"/>
                     
@@ -557,15 +557,15 @@ filter="2::3"/>
                     
             <log idref="kappa.s:RSV2_3"/>
                     
-            <log idref="clockRate.c:clock"/>
-                    
             <log idref="popSize.t:tree"/>
                     
             <log idref="CoalescentConstant.t:tree"/>
+                    
+            <log idref="mutationRate.s:RSV2_2"/>
                 
         </logger>
             
-        <logger id="screenlog" spec="Logger" logEvery="10000">
+        <logger id="screenlog" spec="Logger" logEvery="80000">
                     
             <log idref="posterior"/>
                     
@@ -575,7 +575,7 @@ filter="2::3"/>
                 
         </logger>
             
-        <logger id="treelog.t:tree" spec="Logger" fileName="RSV2-long.trees" logEvery="5000" mode="tree">
+        <logger id="treelog.t:tree" spec="Logger" fileName="RSV2-long.trees" logEvery="4000" mode="tree">
                     
             <log id="TreeWithMetaDataLogger.t:tree" spec="beast.evolution.tree.TreeWithMetaDataLogger" tree="@Tree.t:tree"/>
                 
