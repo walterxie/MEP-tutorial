@@ -33,6 +33,9 @@ The following software will be used in this tutorial:
 
 -   **Java 1.8** - either [Oracle Java](http://www.oracle.com/java/technologies/javase-downloads.html) 
     or [OpenJDK](https://openjdk.java.net/install/).
+    If you are using a higher version of Java than 1.8, 
+    it may affect BEAUti and some GUIs. 
+    In this case, we recommend you to download the BEAST with JRE. 
 
 -   **BEAST** - this package contains the BEAST program, BEAUti,
     DensiTree, TreeAnnotator and other utility programs. This tutorial
