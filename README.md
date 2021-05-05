@@ -439,7 +439,9 @@ TreeAnnotator is an application that comes with BEAST.
 First of all, we need to set the burn-in percentage to `10` (%). 
 Then we select the `Node heights` to `Mean heights`,
 and provide input and output file names. 
-The details about setting are available from [here](https://www.beast2.org/treeannotator/).
+This will rescale the node height to reflect the posterior mean node heights 
+for the clades contained in the MCC tree.
+More details about settings are available from [here](https://www.beast2.org/treeannotator/).
 
 
 <figure>
