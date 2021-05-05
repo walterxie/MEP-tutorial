@@ -1,5 +1,5 @@
 ---
-author: Alexei Drummond, Remco Bouckaert, Walter Xie
+author: Remco Bouckaert, Walter Xie, Alexei Drummond
 level: Beginner
 title: Time-stamped data
 subtitle: Time-stamped data
@@ -354,26 +354,25 @@ chain.
 <figure>
 	<a name="fig:Tracer1"></a>
 	<img style="width:80.0%;" src="figures/Tracer1.png" alt="Tracer1">
-	<figcaption>Figure 11: A screenshot of Tracer for short chain length.</figcaption>
+	<figcaption>Figure 11: A screenshot of Tracer for a short chain length.</figcaption>
 </figure>
 <br>
 
 Here you can see how the samples are correlated. There are 2500 samples
 in the trace (we ran the MCMC for steps sampling every 400) but adjacent
-samples often tend to have similar values. The ESS for the absolute rate
-of evolution (clockRate) is about `65` so we are only getting 1
-independent sample to every `65 ~ 2500/38` actual samples). With a short
-run such as this one, it may also be the case that the default burn-in
-of 10% of the chain length is inadequate. Not excluding enough of the
-start of the chain as burn-in will render estimates of ESS unreliable.
+samples often tend to have similar values. The ESS for the prior is about `56`, 
+so we are only getting 1 independent sample to every `56 ~ 2500/45` actual samples). 
+With a short run such as this one, it may also be the case that the default burn-in
+of 10% of the chain length is inadequate. 
+Not excluding enough of the start of the chain as burn-in will render estimates of ESS unreliable.
 
-The simple response to this situation is that we need to run the chain
-for longer. Given the lowest ESS (for the constant coalescent) is
-`50`, it would suggest that we have to run the chain for at least
+The simple response to this situation is that we need to run the chain for longer. 
+Given the lowest ESS (e.g. for the constant coalescent parameter) is `56`, 
+it would suggest that we have to run the chain for at least
 4 times the length to get reasonable ESSs that are `>200`. 
 
-So let’s go back to BEAUti, set the chain length to 6000000 
-and log every 5000 in the `MCMC`panel, and rename the log file to `RSV2-long.log`
+So let’s go back to BEAUti, set the chain length to 6000000 and log every 5000 
+in the `MCMC`panel, and rename the log file to `RSV2-long.log`
 and tree log file name to `RSV2-long.trees`..  
 Then we can create a new BEAST XML file `RSV2-long.xml` with a longer chain length. 
 Now run BEAST again and load the new log file into Tracer 
@@ -386,13 +385,13 @@ Click on the `Trace` tab and look at the raw trace plot.
 <figure>
 	<a name="fig:Tracer2"></a>
 	<img style="width:80.0%;" src="figures/Tracer2.png" alt="Tracer2">
-	<figcaption>Figure 12: A screenshot of Tracer for longer chain length.</figcaption>
+	<figcaption>Figure 12: A screenshot of Tracer for a long chain length.</figcaption>
 </figure>
 <br>
 
 We have chosen options that produce 12000 samples and with an ESS
-of about `239` there is still auto-correlation between the samples but
-`>239` effectively independent samples will now provide a very good
+of about `253` there is still auto-correlation between the samples but
+`>200` effectively independent samples will now provide a very good
 estimate of the posterior distribution. There are no obvious trends in
 the plot which would suggest that the MCMC has not yet converged, and
 there are no significant long range fluctuations in the trace which
@@ -432,10 +431,16 @@ overlaid:
 </figure>
 <br>
 
-## Summarising the trees 
+## Summarising trees 
 
-Use the program `TreeAnnotator` to summarise the tree. TreeAnnotator is an application that
-comes with BEAST.
+Use the program `TreeAnnotator` to summarise the 
+maximum clade credibility (MCC) tree from sampled trees. 
+TreeAnnotator is an application that comes with BEAST.
+First of all, we need to set the burn-in percentage to `10` (%). 
+Then we select the `Node heights` to `Mean heights`,
+and provide input and output file names. 
+The details about setting are available from [here](https://www.beast2.org/treeannotator/).
+
 
 <figure>
 	<a name="fig:treeannotator"></a>
@@ -444,9 +449,29 @@ comes with BEAST.
 </figure>
 <br>
 
+## Visualising trees
 
-Summary trees can be viewed using `FigTree` (a program separate from BEAST) and 
-DensiTree (distributed with BEAST).
+Summary trees can be viewed by `FigTree` (a program separate from BEAST) 
+and `DensiTree` (distributed with BEAST). 
+FigTree can only see one tree at a time, 
+so we normally use it to visualise the MCC tree.
+
+Open your MCC tree in `FigTree`. First, open the `Trees` tab on the left panel,
+and tick the checkbox `Order nodes` for better looking.
+Then, tick the checkbox of the `Node Bars` tab and open it. 
+Selecting `height_95%_HPD`, you will be able to display the bars over every internal nodes,
+which represents the 95% HPD interval of the estimated node height at that node.
+Tick the checkbox of the `Node labels`, and switch the `Display` 
+between `height` (mean) and `height_95%_HPD`.
+
+But those numbers are not ready to write into the report yet. 
+First, we find the latest date of all samples (tips) is 2002.
+Please note, in this dataset, we only have years available.
+But in a practical case, the sampling date will be most likely accurate to the days.
+As the time unit is year in our previous setting in BEAUti, 
+the node heights can be simply converted to the years, 
+by taking away their heights from 2002.
+
 
 <figure>
 	<a name="fig:RSV2tree"></a>
@@ -454,6 +479,8 @@ DensiTree (distributed with BEAST).
 	<figcaption>Figure 16: The Maximum clade credibility tree for the G gene of 129 RSVA-2 viral samples.</figcaption>
 </figure>
 <br>
+
+
 
 Below a `DensiTree` with clade height bars for clades with over 50% support. Root
 canal tree represents maximum clade credibility tree.
@@ -468,8 +495,12 @@ canal tree represents maximum clade credibility tree.
 
 ## Questions 
 
-> In what year did the common ancestor of all RSVA viruses sampled live?
-> What is the 95% HPD?
+>
+> 1. What is the abolute mutation rates for three codon positions?
+>
+> 2. In what year did the common ancestor of all RSVA viruses sampled live?
+>    What is the 95% HPD?
+>
 
 ## Bonus section: Bayesian Skyline plot 
 
