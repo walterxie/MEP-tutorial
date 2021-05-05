@@ -376,7 +376,7 @@ it would suggest that we have to run the chain for at least
 
 So let’s go back to BEAUti, set the chain length to 6000000 and log every 5000 
 in the `MCMC`panel, and rename the log file to `RSV2-long.log`
-and tree log file name to `RSV2-long.trees`..  
+and tree log file name to `RSV2-long.trees`. 
 Then we can create a new BEAST XML file `RSV2-long.xml` with a longer chain length. 
 Now run BEAST again and load the new log file into Tracer 
 (you can leave the old one loaded for comparison).
