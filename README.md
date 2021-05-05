@@ -460,7 +460,7 @@ Open your MCC tree in `FigTree`. First, open the `Trees` tab on the left panel,
 and tick the checkbox `Order nodes` for better looking.
 Then, tick the checkbox of the `Node Bars` tab and open it. 
 Selecting `height_95%_HPD`, you will be able to display the bars over every internal nodes,
-which represents the 95% HPD interval of the estimated node height at that node.
+which represents the 95% HPD interval of the height at that node summarised from posterior trees.
 Tick the checkbox of the `Node labels`, and switch the `Display` 
 between `height` (mean) and `height_95%_HPD`.
 
