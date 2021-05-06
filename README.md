@@ -489,11 +489,12 @@ which represents the maximum clade credibility tree.
 Open the `Grid` tab, choose the `Short grid`, make the scale axis `Reverse`, 
 and set the `Origin` to 2002. 
 Please be aware that the origin here means the date of the youngest tips.
+
 Before we can show the 95% HPD interval of node heights, 
 we need to click the `Central` button on the top right corner under the `type` tab.   
 Then open the `Clades` tab, set the `Smallest` text filed to 0.5, 
-to only select the clades with over 50% support.
-Then, tick the `Show clades`, and switch `draw` option from `Support` to `95%HPD`. 
+to only select the clades with over 50% support.Then, tick the `Show clades`, 
+and switch `draw` option from `Support` to `95%HPD`. 
 The error bars representing the 95% HPD interval of internal nodes will be displayed.
 If you want to show a particular node, such as root, 
 you can tick the `Select only` check-box, and use your mouse to select it from the panel. 
