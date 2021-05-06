@@ -138,9 +138,9 @@ RSVA sequences have been sampled at various dates going back to the
 and we could simply edit the value in the `Date` column of the table to
 reflect these. However, if the taxa names contain the calibration
 information, then a convenient way to specify the dates of the sequences
-in BEAUti is to click the checkbox `Use tip dates` and then use
-the `Configure` button at the top of the `Tip Dates` panel.
-Clicking this will make a dialog box appear.
+in BEAUti is to click the checkbox `Use tip dates` and then click
+the `Auto-configure` button at the top right of the `Tip Dates` panel.
+This will make a dialog box appear.
 
 <figure>
 	<img style="width:80.0%;" src="figures/BEAUti_GuessDates.png" alt="BEAUti_GuessDates">
@@ -148,9 +148,9 @@ Clicking this will make a dialog box appear.
 </figure>
 <br>
 
-Select the option to `use everything`, choose `after last` from from
+Select the option to `use everything`, choose `after last` from the
 drop-down box and type `s` into the corresponding text box. This will
-extract the trailing numbers from the taxon names after the last little
+extract the trailing numbers from the taxon names after the last lower-case letter
 `s`, which are interpreted as the year (in this case since 1900) that
 the sample was isolated.
 
@@ -342,6 +342,7 @@ End likelihood: -6088.148078992193
 
 ## Analysing the BEAST output 
 
+Drag and drop the BEAST log file `RSV2.log` to the left panel of the software `Tracer`.
 Note that the effective sample sizes (ESSs) for many of the logged
 quantities are small (ESSs less than 100 will be highlighted in red by
 Tracer). This is not good. A low ESS means that the trace contains a lot
@@ -363,7 +364,7 @@ Here you can see how the samples are correlated. There are 2000 samples
 in the trace (we ran the MCMC for steps sampling every 500) but adjacent
 samples often tend to have similar values. 
 The ESS for the `clockRate` is about `34`, after removing 10% burn-in.
-So we are only getting 1 independent sample to every `52 ~ 1800/34` actual samples). 
+So we are only getting 1 independent sample to every `53 ~ 1800/34` actual samples). 
 With a short run such as this one, it may also be the case that 
 the default burn-in (10%) of the chain length is inadequate. 
 Not excluding enough of the start of the chain as burn-in will render estimates of ESS unreliable.
