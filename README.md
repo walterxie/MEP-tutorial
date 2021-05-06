@@ -519,9 +519,9 @@ you can tick the `Select only` check-box, and use your mouse to select it from t
 ## Bonus section: Bayesian Skyline plot 
 
 We can reconstruct the population history using the Bayesian Skyline
-plot. In order to do so, load the XML file into BEAUti, select the
-priors-tab and change the tree prior from coalescent with constant
-population size to coalescent with Bayesian skyline. Note that an extra
+plot. In order to do so, load the XML file into BEAUti using the menu `File` => `Load`. 
+Select the `Priors` panel and change the tree prior from `Coalescent Cconstant Population`
+to `Coalescent Bayesian Skyline`. Note that an extra
 item is added to the priors called `Markov chained population sizes`
 which is a prior that ensures dependence between population sizes.
 
@@ -532,9 +532,10 @@ which is a prior that ensures dependence between population sizes.
 <br>
 
 By default the number of groups used in the skyline analysis is set to
-5, To change this, select menu View/Show Initialization panel and a list
-of parameters is shown. Select `bPopSizes.t:tree` and change the
-dimension to 3. Likewise, selection `bGroupSizes.t:tree` and change
+5, To change this, select menu `View` => `Show Initialization panel`, 
+and then a list of parameters is shown in the `Initialization` panel. 
+Select `bPopSizes.t:tree` and change the dimension to 3. 
+Likewise, selection `bGroupSizes.t:tree` and change
 its dimension to 3. The dimensions of the two parameters should be the
 same. More groups mean more population changes can be detected, but it
 also means more parameters need to be estimated and the chain runs
@@ -550,11 +551,11 @@ number of changes, so it could be used as an alternative tree prior.
 This analysis requires a bit longer to converge, so change the MCMC
 chain length to 10 million, and the log intervals for the trace-log and
 tree-log to 10 thousand. Then, save the file and run BEAST. You can also 
-download the log (`RSV2-bsp.log`) and tree (`tree-bsp.trees`) files from 
+download the log (`RSV2-bs.log`) and tree (`RSV2-bs.trees`) files from 
 the `precooked-runs` directory.
 
 To plot the population history, load the log file in tracer and select
-the menu Analysis/Bayesian Skyline Reconstruction.
+the menu `Analysis` => `Bayesian Skyline Reconstruction`.
 
 <figure>
 	<img style="width:80.0%;" src="figures/tracerBSP1.png" alt="tracerBSP1">
@@ -597,8 +598,8 @@ the median and 95% HPD intervals are plotted. After selecting the
 Change the Bayesian skyline prior to extended Bayesian skyline plot
 (EBSP) prior and run till convergence. EBSP produces an extra log file,
 called `EBSP.$(seed).log` where `$(seed)` is replaced by the seed you used
-to run BEAST. A plot can be created by running the EBSPAnalyser utility,
-and loading the output file in a spreadsheet.
+to run BEAST. A plot can be created by running the `EBSPAnalyser` utility 
+from `AppLauncher`, and loading the output file in a spreadsheet.
 
 > How many groups are indicated by the EBSP analysis? This is much lower
 > than for BSP. How does this affect the population history plots?
