@@ -172,7 +172,7 @@ So, the tips having a zero node height will be the latest samples.
 The root height of this time tree will represent the time to 
 the most recent common ancestor (tMRCA) from the latest sampling time.
 To make sure that you select the correct option, you can simply look at the `Height` column.
-The heights of earlier samples should always be higher than those later samples.
+The heights of earlier samples should always be higher than those later (recent) samples.
 
 
 ## Model
