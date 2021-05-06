@@ -39,8 +39,7 @@ Alignment(RSV2)
   629 sites
   332 patterns
 
-May 06, 2021 11:09:00 AM beagle.BeagleFactory loadBeagleInstance
-INFO:   BEAGLE function, create, returned error code -6 (No resource matches requirements)
+
 Filter 3::3
 129 taxa
 209 sites
