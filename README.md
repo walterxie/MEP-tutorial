@@ -206,7 +206,7 @@ We will use the HKY model with empirical base frequencies for all three partitio
 To do this, first switch to the `Site Model` panel, 
 and then choose `HKY` from the `Subst Model` drop-boxes,
 and `Empirical` from the `Frequencies` drop-boxes. 
-Also remember to check the `estimate` check-box for the `Mutation Rate`.
+Also remember to check the `estimate` checkbox for the `Mutation Rate`.
 After three mutation rates are all set to estimate, 
 it will eventually trigger to check the `Fix mean mutation rate` box.
 
@@ -235,20 +235,28 @@ of codons, which are relative to a general rate defined in the molecular clock m
 
 ### Molecular clock model
 
-We are going to use the strict clock model, which is the default, 
-so no changes are necessary in the clock model panel.
-You can optionally specify a starting value for the `clockRate` parameter. 
+We are going to use a strict clock model in our analyses.
+This is the simplest clock model that one can use, and it assumes that rates
+remain constant throughout the whole tree.
+The strict clock model is also the default clock model in BEAUti, so no changes are
+necessary in the clock model panel.
+If you want, you can specify a starting value for the `clockRate` parameter. 
 
 ### Priors 
 
-Priors are the part of your model.
+Priors are part of a Bayesian model, and describe our beliefs or prior inferences
+about the model parameters. Each parameter (including the tree!) is assigned a prior
+distribution, and this must be done *before* looking at the data.
+
 To set up the priors, select the `Priors` tab. 
 We are going to choose a simple tree prior for this analysis, 
 so select `Coalescent Constant Population`. 
 
-In this tutorial, we will set the prior on the `clockRate` parameter for our molecular clock model
-to a log-normal distribution with `M=-5` and `S=1.25`.
-The plot of this prior distribution and its quantiles are visualised on the right side.
+For our molecular clock model, we will set the prior on the `clockRate` parameter
+to a log-normal distribution with mean of -5, and standard deviation of 1.25
+(`M=-5` and `S=1.25`).
+The plot of this prior distribution and its quantiles can be visualised on the right
+side.
 
 <figure>
 	<a name="fig:BEAUti\_priors"></a>
@@ -265,14 +273,14 @@ The further reading about priors can be seen from the tutorial
 
 For this dataset, let’s initially set the chain length to `1000000` as this will
 run reasonably quickly on most modern computers. 
-Set the sampling frequencies for the screen logging to `10000`, 
+Set the sampling frequencies for the screen logging to `10000`,
 the trace log file to `500` and the trees file to `500`.
-So, how many samples are we expecting to have here?
+(So, how many samples are we expecting to have in the trace log file?)
 
-Also change the log file name to `RSV2.log` and tree log file name to `RSV2.trees`.
+Also, change the log file name to `RSV2.log` and tree log file name to `RSV2.trees`.
 If you keep the default tree log file name, 
-`$(tree)` will be replaced by the name defined at the `Tree` column in the `Partitions` panel,
-here is "tree". 
+`$(tree)` will be replaced by the name defined at the `Tree` column in the `Partitions`
+panel.
 
 <figure>
 	<img style="max-width:80.0%;" src="figures/BEAUti_mcmc.png" alt="BEAUti_mcmc">
@@ -282,8 +290,7 @@ here is "tree".
 
 ## Running BEAST 
 
-Save the BEAST file (e.g. `RSV2.xml`) and run it in BEAST.
-We recommend you to use BEAGLE library, if it is installed in your machine.
+Save the BEAST `.xml` specification file (e.g., `RSV2.xml`).
 
 <figure>
 	<img style="max-width:60%;" src="figures/BEAST.png" alt="BEAST">
@@ -292,10 +299,12 @@ We recommend you to use BEAGLE library, if it is installed in your machine.
 <br>
 
 Now run BEAST and when it asks for an input file, provide your newly
-created XML file as input. BEAST will then run until it has finished
-reporting information to the screen. The actual results files are save
-to the disk in the same location as your input file. 
-The output to the screen will look something like this:
+created `.xml` file as input.
+We recommend you to use BEAGLE library, if it is installed on your
+machine.
+BEAST will then run until it has finished reporting information to the
+screen. The actual results files are saved to disk in the same location
+as your input file. The output to the screen will look something like this:
 
 ```
                         BEAST v2.6.4, 2002-2021
@@ -365,7 +374,8 @@ End likelihood: -6088.148078992193
 
 ## Analysing the BEAST output 
 
-Drag and drop the BEAST log file `RSV2.log` to the left panel of the software `Tracer`.
+Drag and drop the BEAST log file `RSV2.log` to the left panel of the software
+`Tracer`.
 Note that the effective sample sizes (ESSs) for many of the logged
 quantities are small (ESSs less than 100 will be highlighted in red by
 Tracer). This is not good. A low ESS means that the trace contains a lot
@@ -386,21 +396,22 @@ chain.
 Here you can see how the samples are correlated. There are 2000 samples
 in the trace (we ran the MCMC for steps sampling every 500) but adjacent
 samples often tend to have similar values. 
-The ESS for the `clockRate` is about `34`, after removing 10% burn-in.
+The ESS for the `clockRate` is about `34`, after removing the first 10% of 
+the samples as burn-in.
 So we are only getting 1 independent sample to every `53 ~ 1800/34` actual samples). 
 With a short run such as this one, it may also be the case that 
 the default burn-in (10%) of the chain length is inadequate. 
 Not excluding enough of the start of the chain as burn-in will render estimates of ESS unreliable.
 
 The simple response to this situation is that we need to run the chain for longer. 
-Given the lowest ESS (e.g. for the constant coalescent parameter) is `24`, 
+Given the lowest ESS (e.g., for the constant coalescent parameter) is `24`, 
 it would suggest that we have to run the chain for at least
 8 times the length to get reasonable ESSs that are `>200`. 
 
-So let’s go back to BEAUti, set the chain length to 8000000 and log every 4000 
-in the `MCMC`panel, and rename the log file to `RSV2-long.log`
+So let's go back to BEAUti, set the chain length to 8000000 and log every 4000 
+in the `MCMC` panel. We will also rename the log file to `RSV2-long.log`
 and tree log file name to `RSV2-long.trees`. 
-Then we can create a new BEAST XML file `RSV2-long.xml` with a longer chain length. 
+Then we can create a new BEAST `.xml` file `RSV2-long.xml` with a longer chain length. 
 Now run BEAST again and load the new log file into Tracer 
 (you can leave the old one loaded for comparison).
 Please note BEAST does not support multiple instances from GUI, 
@@ -415,16 +426,16 @@ Click on the `Trace` tab and look at the raw trace plot.
 <br>
 
 We have chosen options that produce the same number of samples 
-but with an better ESS. 
+but with a larger ESS. 
 There is still auto-correlation between the samples but
-`>200` effectively independent samples will now provide a very good
+`>200` effectively independent samples will now provide a better
 estimate of the posterior distribution. There are no obvious trends in
 the plot which would suggest that the MCMC has not yet converged, and
 there are no significant long range fluctuations in the trace which
 would suggest poor mixing.
 
-As we are satisfied with the mixing we can now move on to one of the
-parameters of interest: substitution rate. Select `clockRate` in the
+As we are satisfied with the mixing, we can now move on to one of the
+parameters of interest: the substitution rate. Select `clockRate` in the
 left-hand table. This is the average substitution rate across all sites
 in the alignment. Now choose the density plot by selecting the tab
 labeled `Marginal Density`. This shows a plot of the marginal
@@ -438,9 +449,9 @@ similar to this:
 </figure>
 <br>
 
-As you can see the posterior probability density is roughly bell-shaped.
-There is some sampling noise which would be reduced if we ran the chain
-for longer or sampled more often but we already have a good estimate of
+As you can see, the posterior probability density is roughly bell-shaped.
+There is some sampling noise that would be reduced if we ran the chain
+for longer or sampled more often, but we already have a good estimate of
 the mean and HPD interval. You can overlay the density plots of multiple
 traces in order to compare them (it is up to the user to determine
 whether they are comparable on the the same axis or not). Select the
@@ -458,10 +469,11 @@ overlaid:
 
 ## Summarising trees 
 
-Use the program `TreeAnnotator` to summarise the 
-maximum clade credibility (MCC) tree from sampled trees. 
+We will use the program `TreeAnnotator` to summarise the 
+maximum clade credibility (MCC) tree from the sampled trees (in
+the tree log file). 
 TreeAnnotator is an application that comes with BEAST.
-First of all, we need to set the burn-in percentage to `10` (%). 
+First of all, we need to set the burn-in percentage to `10`(%). 
 Then we select the `Node heights` to `Mean heights`,
 and provide input and output file names. 
 This will rescale the node height to reflect the posterior mean node heights 
@@ -482,22 +494,17 @@ and `DensiTree` (distributed with BEAST).
 FigTree can only see one tree at a time, 
 so we normally use it to visualise the MCC tree.
 
-Open your MCC tree in `FigTree`. First, open the `Trees` tab on the left panel,
-and tick the checkbox `Order nodes` for better looking.
-Then, tick the checkbox of the `Node Bars` tab and open it. 
-Selecting `height_95%_HPD`, you will be able to display the bars over every internal nodes,
-which represents the 95% HPD interval of the height at that node summarised from posterior trees.
-Tick the checkbox of the `Node labels`, and switch the `Display` 
+Let us open the MCC tree in `FigTree`. First, open the `Trees` tab on the left panel,
+and tick the checkbox `Order nodes`.
+Tick the checkbox of the `Node Bars` tab and open it. 
+By selecting `height_95%_HPD`, you will be able to display the 95% HPD-intervals on
+internal node ages (as bars) over each internal node.
+Then tick the `Node labels` checkbox, and switch the `Display` 
 between `height` (mean) and `height_95%_HPD`.
 
-But those numbers are not ready to write into the report yet. 
-First, we find the latest date of all samples (tips) is 2002.
-Please note, in this dataset, we only have years available.
-But in a practical case, the sampling date will be most likely accurate to the days.
-As the time unit is year in our previous setting in BEAUti, 
-the node heights can be simply converted to the years, 
-by taking away their heights from 2002.
-
+In order to interpret the estimated node heights, note that the latest sample in our data
+set is from 2002. 
+We can thus convert our node heights to years by subtracting their heights from 2002.
 
 <figure>
 	<img style="max-width:90%;" src="figures/RSV2_mcc_tree.png" alt="RSV2_mcc_tree">
@@ -505,24 +512,22 @@ by taking away their heights from 2002.
 </figure>
 <br>
 
-
 Now load all your posterior trees to `DensiTree`.
-Click the `show` tab and tick the `Root Canal` check-box, 
-then you can see a root canal tree drawn by thick blue lines,
-which represents the maximum clade credibility tree.
-Open the `Grid` tab, choose the `Short grid`, make the scale axis `Reverse`, 
-and set the `Origin` to 2002. 
+Click the `show` tab and tick the `Root Canal` checkbox.
+The "root canal tree", drawn in thick blue lines,
+represents the MCC tree.
+Open the `Grid` tab, choose `Short grid`, pick `Reverse` for the
+scale axis, and set the `Origin` to 2002. 
 Please be aware that the origin here means the date of the youngest tips.
 
-Before we can show the 95% HPD interval of node heights, 
+Before we can show the 95% HPD interval on the node heights, 
 we need to click the `Central` button on the top right corner under the `type` tab.   
 Then open the `Clades` tab, set the `Smallest` text filed to 0.5, 
-to only select the clades with over 50% support.Then, tick the `Show clades`, 
-and switch `draw` option from `Support` to `95%HPD`. 
-The error bars representing the 95% HPD interval of internal nodes will be displayed.
-If you want to show a particular node, such as root, 
-you can tick the `Select only` check-box, and use your mouse to select it from the panel. 
-
+to select only the clades with over 50% support.
+Then, tick the `Show clades`, and switch `draw` option from `Support` to `95%HPD`. 
+The error bars representing the 95% HPD interval of internal nodes will now be displayed.
+If you want to show a particular node, such as the root, 
+you can tick the `Select only` checkbox, and select it from the panel. 
 
 <figure>
 	<img style="max-width:90%;" src="figures/DensiTree.png" alt="DensiTree">
@@ -534,19 +539,19 @@ you can tick the `Select only` check-box, and use your mouse to select it from t
 ## Questions 
 
 >
-> 1. What is the abolute mutation rates for three codon positions?
+> 1. What are the absolute mutation rates for the three codon positions?
 >
-> 2. In what year did the common ancestor of all RSVA viruses sampled live?
->    What is the 95% HPD?
->
+> 2. In what year did the most recent common ancestor of all RSVA samples live?
+What is the 95% HPD?
+
 
 ## Bonus section: Bayesian Skyline plot 
 
 We can reconstruct the population history using the Bayesian Skyline
-plot. In order to do so, load the XML file into BEAUti using the menu `File` => `Load`. 
-Select the `Priors` panel and change the tree prior from `Coalescent Cconstant Population`
-to `Coalescent Bayesian Skyline`. Note that an extra
-item is added to the priors called `Markov chained population sizes`
+plot. In order to do so, load the `.xml` file into BEAUti using the menu `File` => `Load`. 
+Select the `Priors` panel and change the tree prior from `Coalescent Constant Population`
+to `Coalescent Bayesian Skyline`.
+Note that an extra item is added to the priors called `Markov chained population sizes`
 which is a prior that ensures dependence between population sizes.
 
 <figure>
@@ -556,14 +561,14 @@ which is a prior that ensures dependence between population sizes.
 <br>
 
 By default the number of groups used in the skyline analysis is set to
-5, To change this, select menu `View` => `Show Initialization panel`, 
+5. To change this, select menu `View` => `Show Initialization panel`, 
 and then a list of parameters is shown in the `Initialization` panel. 
 Select `bPopSizes.t:tree` and change the dimension to 3. 
-Likewise, selection `bGroupSizes.t:tree` and change
+Likewise, select `bGroupSizes.t:tree` and change
 its dimension to 3. The dimensions of the two parameters should be the
 same. More groups mean more population changes can be detected, but it
-also means more parameters need to be estimated and the chain runs
-longer. The extended Bayesian skyline plot automatically detects the
+also means more parameters need to be estimated, and that the MCMC chain must
+run longer. The extended Bayesian skyline plot automatically detects the
 number of changes, so it could be used as an alternative tree prior.
 
 <figure>
@@ -572,9 +577,9 @@ number of changes, so it could be used as an alternative tree prior.
 </figure>
 <br>
 
-This analysis requires a bit longer to converge, so change the MCMC
-chain length to 10 million, and the log intervals for the trace-log and
-tree-log to 10 thousand. Then, save the file and run BEAST. You can also 
+This analysis takes longer to converge, so we will change the MCMC
+chain length to 10 million, and the log intervals for the trace log and
+tree log to 10 thousand. Then, save the file and run BEAST. You can also 
 download the log (`RSV2-bs.log`) and tree (`RSV2-bs.trees`) files from 
 the `precooked-runs` directory.
 
@@ -597,7 +602,7 @@ entry for age of youngest tip to 2002.
 </figure>
 <br>
 
-After some calculation, a graph appears showing population history where
+After some calculation, a graph appears showing a population history where
 the median and 95% HPD intervals are plotted. After selecting the 
 `solid interval` checkbox, the graph should look something like this.
 
@@ -613,14 +618,14 @@ the median and 95% HPD intervals are plotted. After selecting the
 >1.  By what amount did the effective population size of RSVA grow from
 >    1970 to 2002 according to the BSP?
 >
->2.  What are the underlying assumptions of the BSP? Are the violated by
+>2.  What are the underlying assumptions of the BSP? Are they violated by
 >    this data set?
 >
 
 ## Exercise
 
 Change the Bayesian skyline prior to extended Bayesian skyline plot
-(EBSP) prior and run till convergence. EBSP produces an extra log file,
+(EBSP) prior and run until convergence. EBSP produces an extra log file,
 called `EBSP.$(seed).log` where `$(seed)` is replaced by the seed you used
 to run BEAST. A plot can be created by running the `EBSPAnalyser` utility 
 from `AppLauncher`, and loading the output file in a spreadsheet.
