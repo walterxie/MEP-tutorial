@@ -9,19 +9,18 @@ beastversion: 2.6.4
 # Time-stamped data
 
 This tutorial estimates the rate of evolution from a set of virus
-sequences which have been isolated at different points in time
-(heterochronous or time-stamped data). The data are 129 sequences from
+sequences isolated at different points in time
+(heterochronous or time-stamped data). The data consist of 129 sequences from
 the G (attachment protein) gene of human respiratory syncytial virus
-subgroup A (RSVA) from various parts of the world with isolation dates
-ranging from 1956-2002 
+subgroup A (RSVA). These viral sequences come from various parts of the world
+at isolation dates ranging from 1956 to 2002 
 ({% cite Zlateva:2004uq --file MEP-tutorial/master-refs %}, {% cite Zlateva:2005qy --file MEP-tutorial/master-refs %}). 
-RSVA causes
-infections of the lower respiratory tract causing symptoms that are
-often indistinguishable from the common cold. By age 3, nearly all
-children will be infected and a small percentage (<3%) will develop
-more serious inflammation of the bronchioles requiring hospitalisation.
+RSVA infects the lower respiratory tract and causes symptoms that are
+often indistinguishable from the common cold. Nearly all
+children are infected by age 3, and a small percentage (<3%) develops
+a more serious inflammation of the bronchioles requiring hospitalisation.
 
-The aim of this tutorial is to obtain estimates for :
+The aim of this tutorial is to estimate:
 
 -   the rate of molecular evolution
 
@@ -33,9 +32,9 @@ The following software will be used in this tutorial:
 
 -   **Java 1.8** - either [Oracle Java](http://www.oracle.com/java/technologies/javase-downloads.html) 
     or [OpenJDK](https://openjdk.java.net/install/).
-    If you are using a higher version of Java than 1.8, 
+    If you are using a more recent version of Java than 1.8, 
     it may affect BEAUti and some GUIs. 
-    In this case, we recommend you to download the BEAST with JRE. 
+    In this case, we recommend you to download BEAST with JRE. 
 
 -   **BEAST** - this package contains the BEAST program, BEAUti,
     DensiTree, TreeAnnotator and other utility programs. This tutorial
@@ -56,7 +55,7 @@ The following software will be used in this tutorial:
 
 -   **Beagle** (optional) - this is a high-performance library 
     that can perform the core calculations at the heart of     
-    most Bayesian and Maximum Likelihood phylogenetics packages.
+    most Bayesian and maximum likelihood phylogenetics packages.
     [https://github.com/beagle-dev/beagle-lib/wiki](https://github.com/beagle-dev/beagle-lib/wiki).
 
 
@@ -67,16 +66,15 @@ The following software will be used in this tutorial:
 The data is in a file called
 [RSV2.nex](https://github.com/CompEvol/beast2/blob/master/examples/nexus/RSV2.nex?raw=true).
 This file contains an alignment of 129 sequences from the G gene of RSVA
-virus, 629 nucleotides in length. 
-Click the link, the data will be opened in your web browser, and then right click mouse and save it as
-`RSV2.nex` in your working directory.
+virus. These sequences are 629 nucleotides long. 
+Click the link above and the raw data will be displayed on your web browser. You can then right-click,
+"Save Page As", and save the data as `RSV2.nex` in your working directory.
 
-Alternatively, you can find it in the `examples/nexus` directory in the directory
+Alternatively, you can find this data in the `examples/nexus` directory in the directory
 where BEAST was installed. If you prefer to use BEAUti, 
-you can select the menu `File` => `Set working dir` => `BEAST`. 
-This will make your file chooser to locate the `examples` directory 
-when you click `Import Alignment`.
-
+you can select the menu `File` => `Set working dir` => `BEAST`.
+This will make it easier to find example and tutorial files
+distributed with `BEAST`, precluding directory navigation.
 
 ### Import and split the alignment
 
@@ -94,11 +92,20 @@ then you need to select `Import Alignment` from the drop-down list as shown in F
 </figure>
 <br>
 
-Because this is a protein-coding gene we are going to split the
-alignment into three partitions representing each of the three codon
-positions. To do this we will click the `Split` button at the
-bottom of the `Partitions` panel and then select the `1 + 2 + 3
-frame 3` from the drop-down menu (Figure 2).
+The gene we have at hand codes for a protein, meaning its sequence can
+be seen as a series of triplets, or codons, with each codon being later
+translated into an amino acid (remember the central dogma of molecular
+biology!). A string of aminoacids then constitutes a protein.
+
+For our purposes, what matters is that we have now known for a while that
+different positions in each codon evolve at different rates, which has to do
+with what we call the "genetic code" (look up "genetic code redundancy" online). 
+In knowing this, we can incorporate this difference in evolutionary rates
+by splitting the alignment into three partitions, each representing one the three
+codon positions.
+
+To do this we will click the `Split` button at the bottom of the `Partitions`
+panel and then select the `1 + 2 + 3 frame 3` from the drop-down menu (Figure 2).
 
 <figure>
 	<img style="width:80.0%;" src="figures//BEAUti_split.png" alt="split alignment">
@@ -106,8 +113,9 @@ frame 3` from the drop-down menu (Figure 2).
 </figure>
 <br>
 
-This signifies that the first full codon starts at the third nucleotide in the alignment, 
-and will create three rows in the partitions panel.
+This specifies that the first full codon starts at the third nucleotide in the
+alignment (it just so happens that our gene sequence starts at the third position
+in the sequence), and creates three rows in the partitions panel.
 
 ### Linking or unlinking models
 
