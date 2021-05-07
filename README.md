@@ -166,7 +166,7 @@ the `Auto-configure` button at the top right of the `Tip Dates` panel.
 This will make a dialog box appear.
 
 <figure>
-	<img style="max-width:80.0%;" src="figures/BEAUti_GuessDates.png" alt="BEAUti_GuessDates">
+	<img style="max-width:60.0%;" src="figures/BEAUti_GuessDates.png" alt="BEAUti_GuessDates">
 	<figcaption>Figure 4: Guess dates dialog</figcaption>
 </figure>
 <br>
@@ -582,7 +582,7 @@ To plot the population history, load the log file in tracer and select
 the menu `Analysis` => `Bayesian Skyline Reconstruction`.
 
 <figure>
-	<img style="max-width:60.0%;" src="figures/tracerBSP1.png" alt="tracerBSP1">
+	<img style="max-width:50.0%;" src="figures/tracerBSP1.png" alt="tracerBSP1">
 	<figcaption>Figure 20: Bayesian Skyline Reconstruction in Tracer</figcaption>
 </figure>
 <br>
