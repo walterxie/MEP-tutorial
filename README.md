@@ -470,7 +470,7 @@ More details about settings are available from [here](https://www.beast2.org/tre
 
 
 <figure>
-	<img style="max-width:50.0%;" src="figures/treeannotator.png" alt="treeannotator">
+	<img style="max-width:60.0%;" src="figures/treeannotator.png" alt="treeannotator">
 	<figcaption>Figure 15: TreeAnnotator for creating a summary tree from a posterior tree set.</figcaption>
 </figure>
 <br>
