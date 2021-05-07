@@ -101,8 +101,8 @@ For our purposes, what matters is that we have now known for a while that
 different positions in each codon evolve at different rates, which has to do
 with what we call the "genetic code" (look up "genetic code redundancy" online). 
 In knowing this, we can incorporate this difference in evolutionary rates
-by splitting the alignment into three partitions, each representing one the three
-codon positions.
+by splitting the alignment into three partitions, each representing one 
+of the three codon positions.
 
 To do this we will click the `Split` button at the bottom of the `Partitions`
 panel and then select the `1 + 2 + 3 frame 3` from the drop-down menu (Figure 2).
@@ -119,11 +119,18 @@ in the sequence), and creates three rows in the partitions panel.
 
 ### Linking or unlinking models
 
-You will have to link the tree and clock models across the three
-partitions (and name them `tree` and `clock` respectively) before
-continuing to the next step. 
-To achieve this goal, you need to select all three partitions first, 
-and respectively click the button `Link Clock Models` and `Link Trees`.
+For the reasons mentioned above, we want to allow each partition to have its own
+substitution model.
+This will make it possible for each codon position to have a different relative evolutionary
+rates.
+But we want to still have all codon positions (i) evolving along the same phylogenetic
+tree, and (ii) keeping their evolutionary rates proportionally the same along that tree.
+
+In order to achieve this, you will have to link (i) the tree and (ii) clock models (these
+deal with how rates vary along the tree) across the three partitions, and name them `tree`
+and `clock`, respectively.
+This requires selecting all three partitions first, and clicking the buttons `Link Clock Models`
+and `Link Trees`.
 The partition panel should now look something like this:
 
 <figure>
@@ -132,21 +139,29 @@ The partition panel should now look something like this:
 </figure>
 <br>
 
-The configuration here indicates we are using one individual substitution model 
-(including site model) at each partition, but making all partitions share 
-one molecular clock model and one tree prior. 
-
-
 ### Tip dates 
 
-By default all the taxa are assumed to have a date of zero (i.e. the
-sequences are assumed to be sampled at the same time). In this case, the
+By default all the taxa are assumed to have a date of zero (i.e., the
+sequences are assumed to be sampled at the same time). In our case, the
 RSVA sequences have been sampled at various dates going back to the
 1950s. The actual year of sampling is given in the name of each taxon
 and we could simply edit the value in the `Date` column of the table to
-reflect these. However, if the taxa names contain the calibration
-information, then a convenient way to specify the dates of the sequences
-in BEAUti is to click the checkbox `Use tip dates` and then click
+reflect these.
+
+Knowing the absolute times of sampling and having samples taken over time
+-- rather than all samples having been collected only at the present moment -- 
+is crucial because otherwise we can't tell the rate `r` and time `t` apart,
+where both contribute to the accumulated evolutionary change, `D = r * t`.
+We could obtain any value of `D` as the result of
+(`1/2r * 2t`) or (`2r * 1/2t`), etc. Can you see how `r` and `t` will be
+conflated? We thus need to have one or more samples taken at known absolute
+`t` values to be able to disentangle `r` and `t`. This is called "calibrating"
+the tree.
+
+Back to our data, when taxa names contain the calibration information, as
+is our case, then a convenient way to specify the dates of the sequences
+in to let BEAUti figure it out.
+You can do that by clicking the checkbox `Use tip dates`, and then clicking
 the `Auto-configure` button at the top right of the `Tip Dates` panel.
 This will make a dialog box appear.
 
@@ -159,8 +174,10 @@ This will make a dialog box appear.
 Select the option to `use everything`, choose `after last` from the
 drop-down box and type `s` into the corresponding text box. This will
 extract the trailing numbers from the taxon names after the last lower-case letter
-`s`, which are interpreted as the year (in this case since 1900) that
+`s`, which are interpreted as the year (since 1900 in our case) that
 the sample was isolated.
+You may have noticed these dates are specified as `Since some time in the past`:
+this is known as __forward__ time in a phylodynamic analysis.
 
 The dates panel should now look something like this:
 
@@ -170,17 +187,15 @@ The dates panel should now look something like this:
 </figure>
 <br>
 
-
-You may have noticed these dates are specified as `Since some time in the past`,
-which is also known by __forward__ time in a phylodynamic analysis.
-In this type of models, the node height of the sampled phylogentic tree  
-will be rescaled to the unit of time (here the unit is `year`). 
-This type of trees are also known as time trees.
-So, the tips having a zero node height will be the latest samples.
-The root height of this time tree will represent the time to 
-the most recent common ancestor (tMRCA) from the latest sampling time.
-To make sure that you select the correct option, you can simply look at the `Height` column.
-The heights of earlier samples should always be higher than those later (recent) samples.
+Thanks to calibration, the node height of the sampled phylogenetic tree  
+will be scaled to some unit of absolute time (here the unit is `year`),
+which makes our phylogenetic trees be what we call "time trees".
+Tips having a zero node height will be the latest (i.e., youngest) samples.
+The root height of this time tree represents the time to the most recent
+common ancestor (tMRCA) of all samples.
+To make sure that you selectd the correct option, you can simply look at the
+`Height` column. The heights of earlier samples should always be larger than
+those of later (recent) samples.
 
 
 ## Model
