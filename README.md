@@ -87,7 +87,7 @@ If there is a pop-up dialog to ask you `what to add`,
 then you need to select `Import Alignment` from the drop-down list as shown in Figure 1.
 
 <figure>
-	<img style="width:25%;" src="figures/Add_partition.png" alt="Add partition">
+	<img style="max-width:50%;" src="figures/Add_partition.png" alt="Add partition">
 	<figcaption>Figure 1: Add the alignment from drag-and-drop</figcaption>
 </figure>
 <br>
@@ -108,7 +108,7 @@ To do this we will click the `Split` button at the bottom of the `Partitions`
 panel and then select the `1 + 2 + 3 frame 3` from the drop-down menu (Figure 2).
 
 <figure>
-	<img style="width:80.0%;" src="figures//BEAUti_split.png" alt="split alignment">
+	<img style="max-width:50%;" src="figures//BEAUti_split.png" alt="split alignment">
 	<figcaption>Figure 2: Split the alignment</figcaption>
 </figure>
 <br>
@@ -134,7 +134,7 @@ and `Link Trees`.
 The partition panel should now look something like this:
 
 <figure>
-	<img style="width:80.0%;" src="figures/BEAUti_partition.png" alt="BEAUti_partition">
+	<img style="max-width:80.0%;" src="figures/BEAUti_partition.png" alt="BEAUti_partition">
 	<figcaption>Figure 3: A screenshot of the Partitions tab in BEAUti</figcaption>
 </figure>
 <br>
@@ -166,7 +166,7 @@ the `Auto-configure` button at the top right of the `Tip Dates` panel.
 This will make a dialog box appear.
 
 <figure>
-	<img style="width:80.0%;" src="figures/BEAUti_GuessDates.png" alt="BEAUti_GuessDates">
+	<img style="max-width:80.0%;" src="figures/BEAUti_GuessDates.png" alt="BEAUti_GuessDates">
 	<figcaption>Figure 4: Guess dates dialog</figcaption>
 </figure>
 <br>
@@ -182,7 +182,7 @@ this is known as __forward__ time in a phylodynamic analysis.
 The dates panel should now look something like this:
 
 <figure>
-	<img style="width:80.0%;" src="figures/BEAUti_dates.png" alt="BEAUti_dates">
+	<img style="max-width:80.0%;" src="figures/BEAUti_dates.png" alt="BEAUti_dates">
 	<figcaption>Figure 5: Dates panel</figcaption>
 </figure>
 <br>
@@ -211,7 +211,7 @@ After three mutation rates are all set to estimate,
 it will eventually trigger to check the `Fix mean mutation rate` box.
 
 <figure>
-	<img style="width:80.0%;" src="figures/BEAUti_Site_Model.png" alt="BEAUti_Site_Model">
+	<img style="max-width:80.0%;" src="figures/BEAUti_Site_Model.png" alt="BEAUti_Site_Model">
 	<figcaption>Figure 6: Site model</figcaption>
 </figure>
 <br>
@@ -223,7 +223,7 @@ Go through each site model, as you can see, their
 configurations are same now.
 
 <figure>
-	<img style="width:80.0%;" src="figures/cloneFrom.png" alt="cloneFrom">
+	<img style="max-width:80.0%;" src="figures/cloneFrom.png" alt="cloneFrom">
 	<figcaption>Figure 7: Clone configuration from one site model to others.</figcaption>
 </figure>
 <br>
@@ -252,7 +252,7 @@ The plot of this prior distribution and its quantiles are visualised on the righ
 
 <figure>
 	<a name="fig:BEAUti\_priors"></a>
-	<img style="width:80.0%;" src="figures/BEAUti_priors.png" alt="BEAUti_priors">
+	<img style="max-width:80.0%;" src="figures/BEAUti_priors.png" alt="BEAUti_priors">
 	<figcaption>Figure 8: Priors</figcaption>
 </figure>
 <br>
@@ -275,7 +275,7 @@ If you keep the default tree log file name,
 here is "tree". 
 
 <figure>
-	<img style="width:80.0%;" src="figures/BEAUti_mcmc.png" alt="BEAUti_mcmc">
+	<img style="max-width:80.0%;" src="figures/BEAUti_mcmc.png" alt="BEAUti_mcmc">
 	<figcaption>Figure 9: MCMC options</figcaption>
 </figure>
 <br>
@@ -286,7 +286,7 @@ Save the BEAST file (e.g. `RSV2.xml`) and run it in BEAST.
 We recommend you to use BEAGLE library, if it is installed in your machine.
 
 <figure>
-	<img style="width:80.0%;" src="figures/BEAST.png" alt="BEAST">
+	<img style="max-width:60%;" src="figures/BEAST.png" alt="BEAST">
 	<figcaption>Figure 10: A screenshot of BEAST.</figcaption>
 </figure>
 <br>
@@ -378,7 +378,7 @@ the raw trace, that is, the sampled values against the step in the MCMC
 chain.
 
 <figure>
-	<img style="width:80.0%;" src="figures/Tracer1.png" alt="Tracer1">
+	<img style="max-width:80.0%;" src="figures/Tracer1.png" alt="Tracer1">
 	<figcaption>Figure 11: A screenshot of Tracer for a short chain length.</figcaption>
 </figure>
 <br>
@@ -409,7 +409,7 @@ so you have to close the previous run before you can start a new one.
 Click on the `Trace` tab and look at the raw trace plot.
 
 <figure>
-	<img style="width:80.0%;" src="figures/Tracer2.png" alt="Tracer2">
+	<img style="max-width:80.0%;" src="figures/Tracer2.png" alt="Tracer2">
 	<figcaption>Figure 12: A screenshot of Tracer for a long chain length.</figcaption>
 </figure>
 <br>
@@ -433,7 +433,7 @@ similar to this:
 
 <figure>
 	<a name="fig:Tracer\_density"></a>
-	<img style="width:80.0%;" src="figures/Tracer_density.png" alt="Tracer_density">
+	<img style="max-width:80.0%;" src="figures/Tracer_density.png" alt="Tracer_density">
 	<figcaption>Figure 13: marginal density in tracer</figcaption>
 </figure>
 <br>
@@ -451,7 +451,7 @@ for the relative substitution rate at all three codon positions
 overlaid:
 
 <figure>
-	<img style="width:80.0%;" src="figures/Tracer_relativeRates.png" alt="Tracer_relativeRates">
+	<img style="max-width:80.0%;" src="figures/Tracer_relativeRates.png" alt="Tracer_relativeRates">
 	<figcaption>Figure 14: The posterior probability densities for the relative substitution rates</figcaption>
 </figure>
 <br>
@@ -470,7 +470,7 @@ More details about settings are available from [here](https://www.beast2.org/tre
 
 
 <figure>
-	<img style="width:80.0%;" src="figures/treeannotator.png" alt="treeannotator">
+	<img style="max-width:50.0%;" src="figures/treeannotator.png" alt="treeannotator">
 	<figcaption>Figure 15: TreeAnnotator for creating a summary tree from a posterior tree set.</figcaption>
 </figure>
 <br>
@@ -500,7 +500,7 @@ by taking away their heights from 2002.
 
 
 <figure>
-	<img style="width:80.0%;" src="figures/RSV2_mcc_tree.png" alt="RSV2_mcc_tree">
+	<img style="max-width:90%;" src="figures/RSV2_mcc_tree.png" alt="RSV2_mcc_tree">
 	<figcaption>Figure 16: The Maximum clade credibility tree for the G gene of 129 RSVA-2 viral samples.</figcaption>
 </figure>
 <br>
@@ -525,7 +525,7 @@ you can tick the `Select only` check-box, and use your mouse to select it from t
 
 
 <figure>
-	<img style="width:80.0%;" src="figures/DensiTree.png" alt="DensiTree">
+	<img style="max-width:90%;" src="figures/DensiTree.png" alt="DensiTree">
 	<figcaption>Figure 17: The posterior tree set visualised in DensiTree.</figcaption>
 </figure>
 <br>
@@ -550,7 +550,7 @@ item is added to the priors called `Markov chained population sizes`
 which is a prior that ensures dependence between population sizes.
 
 <figure>
-	<img style="width:80.0%;" src="figures/BEAUti_priors2.png" alt="">
+	<img style="max-width:80.0%;" src="figures/BEAUti_priors2.png" alt="">
 	<figcaption>Figure 18: Priors</figcaption>
 </figure>
 <br>
@@ -567,7 +567,7 @@ longer. The extended Bayesian skyline plot automatically detects the
 number of changes, so it could be used as an alternative tree prior.
 
 <figure>
-	<img style="width:80.0%;" src="figures/BEAUti_init.png" alt="BEAUti_init">
+	<img style="max-width:80.0%;" src="figures/BEAUti_init.png" alt="BEAUti_init">
 	<figcaption>Figure 19: Initialization panel</figcaption>
 </figure>
 <br>
@@ -582,7 +582,7 @@ To plot the population history, load the log file in tracer and select
 the menu `Analysis` => `Bayesian Skyline Reconstruction`.
 
 <figure>
-	<img style="width:80.0%;" src="figures/tracerBSP1.png" alt="tracerBSP1">
+	<img style="max-width:60.0%;" src="figures/tracerBSP1.png" alt="tracerBSP1">
 	<figcaption>Figure 20: Bayesian Skyline Reconstruction in Tracer</figcaption>
 </figure>
 <br>
@@ -592,7 +592,7 @@ the log file. Also, since the youngest sample is from 2002, change the
 entry for age of youngest tip to 2002.
 
 <figure>
-	<img style="width:80.0%;" src="figures/tracerBSP2.png" alt="tracerBSP2">
+	<img style="max-width:80.0%;" src="figures/tracerBSP2.png" alt="tracerBSP2">
 	<figcaption>Figure 21: Bayesian Skyline Reconstruction dialog in Tracer</figcaption>
 </figure>
 <br>
@@ -602,7 +602,7 @@ the median and 95% HPD intervals are plotted. After selecting the
 `solid interval` checkbox, the graph should look something like this.
 
 <figure>
-	<img style="width:80.0%;" src="figures/tracerBSP3.png" alt="tracerBSP3">
+	<img style="max-width:75.0%;" src="figures/tracerBSP3.png" alt="tracerBSP3">
 	<figcaption>Figure 22: Bayesian Skyline Reconstruction</figcaption>
 </figure>
 <br>
