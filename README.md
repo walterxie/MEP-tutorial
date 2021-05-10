@@ -187,7 +187,7 @@ The dates panel should now look something like this:
 </figure>
 <br>
 
-Thanks to calibration, the node height of the sampled phylogenetic tree  
+Thanks to calibration, the node height of the sampled phylogenetic tree
 will be scaled to some unit of absolute time (here the unit is `year`),
 which makes our phylogenetic trees be what we call "time trees".
 Tips having a zero node height will be the latest (i.e., youngest) samples.
