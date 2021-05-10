@@ -1,5 +1,5 @@
 ---
-author: Remco Bouckaert, Walter Xie, Alexei Drummond
+author: Remco Bouckaert, Walter Xie, Fábio K. Mendes, and Alexei Drummond
 level: Beginner
 title: Time-stamped data
 subtitle: Time-stamped data
