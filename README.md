@@ -202,10 +202,10 @@ those of later (recent) samples.
 
 ### Setting the substitution model 
 
-We will use the HKY model with empirical base frequencies for all three partitions. 
+We will use the HKY model and estimate base frequencies for all three partitions. 
 To do this, first switch to the `Site Model` panel, 
 and then choose `HKY` from the `Subst Model` drop-boxes,
-and `Empirical` from the `Frequencies` drop-boxes. 
+and `Estimated` from the `Frequencies` drop-boxes. 
 Also remember to check the `estimate` checkbox for the `Mutation Rate`.
 After three mutation rates are all set to estimate, 
 it will eventually trigger to check the `Fix mean mutation rate` box.
@@ -342,24 +342,27 @@ Gerton Lunter, Sidney Markowitz, Vladimir Minin, Michael Defoin Platel,
     ...
     
     ...
-         990000     -6077.5552     -5488.4548      -589.1004 1m59s/Msamples
-        1000000     -6088.1480     -5501.3390      -586.8090 1m59s/Msamples
+         990000     -6059.7592     -5474.8288      -584.9303 1m58s/Msamples
+        1000000     -6072.4343     -5468.5631      -603.8711 1m57s/Msamples
 
 Operator                                                   Tuning    #accept    #reject      Pr(m)  Pr(acc|m)
-ScaleOperator(StrictClockRateScaler.c:clock)              0.77399       8248      28112    0.03601    0.22684 
-UpDownOperator(strictClockUpDownOperator.c:clock)         0.78496        373      35684    0.03601    0.01034 Try setting scaleFactor to about 0.886
-ScaleOperator(KappaScaler.s:RSV2_1)                       0.37264        338        976    0.00120    0.25723 
-DeltaExchangeOperator(FixMeanMutationRatesOperator)       0.34838       4430      19492    0.02401    0.18519 
-ScaleOperator(KappaScaler.s:RSV2_2)                       0.40247        299        847    0.00120    0.26091 
-ScaleOperator(KappaScaler.s:RSV2_3)                       0.45478        330        865    0.00120    0.27615 
-ScaleOperator(CoalescentConstantTreeScaler.t:tree)        0.73340        280      35823    0.03601    0.00776 Try setting scaleFactor to about 0.856
-ScaleOperator(CoalescentConstantTreeRootScaler.t:tree)    0.66679       3093      33122    0.03601    0.08541 Try setting scaleFactor to about 0.817
-Uniform(CoalescentConstantUniformOperator.t:tree)               -     193562     167207    0.36014    0.53653 
-SubtreeSlide(CoalescentConstantSubtreeSlide.t:tree)       3.42114      33361     145861    0.18007    0.18614 
-Exchange(CoalescentConstantNarrow.t:tree)                       -      45016     135299    0.18007    0.24965 
-Exchange(CoalescentConstantWide.t:tree)                         -         86      35459    0.03601    0.00242 
-WilsonBalding(CoalescentConstantWilsonBalding.t:tree)           -        189      35941    0.03601    0.00523 
-ScaleOperator(PopSizeScaler.t:tree)                       0.58627       9290      26418    0.03601    0.26017 
+ScaleOperator(StrictClockRateScaler.c:clock)              0.79081       9087      26702    0.03589    0.25390 
+UpDownOperator(strictClockUpDownOperator.c:clock)         0.81735        462      35232    0.03589    0.01294 Try setting scaleFactor to about 0.904
+ScaleOperator(KappaScaler.s:RSV2_1)                       0.37574        290        885    0.00120    0.24681 
+DeltaExchangeOperator(FixMeanMutationRatesOperator)       0.33349       4839      19026    0.02392    0.20277 
+ScaleOperator(KappaScaler.s:RSV2_2)                       0.43759        362        849    0.00120    0.29893 
+ScaleOperator(KappaScaler.s:RSV2_3)                       0.45654        287        905    0.00120    0.24077 
+ScaleOperator(CoalescentConstantTreeScaler.t:tree)        0.73805        287      35575    0.03589    0.00800 Try setting scaleFactor to about 0.859
+ScaleOperator(CoalescentConstantTreeRootScaler.t:tree)    0.55544       2111      33800    0.03589    0.05878 Try setting scaleFactor to about 0.745
+Uniform(CoalescentConstantUniformOperator.t:tree)               -     192969     166503    0.35885    0.53681 
+SubtreeSlide(CoalescentConstantSubtreeSlide.t:tree)       3.65244      30871     148436    0.17943    0.17217 
+Exchange(CoalescentConstantNarrow.t:tree)                       -      43760     135429    0.17943    0.24421 
+Exchange(CoalescentConstantWide.t:tree)                         -         99      35864    0.03589    0.00275 
+WilsonBalding(CoalescentConstantWilsonBalding.t:tree)           -        198      35573    0.03589    0.00554 
+ScaleOperator(PopSizeScaler.t:tree)                       0.57008       8862      27174    0.03589    0.24592 
+DeltaExchangeOperator(FrequenciesExchanger.s:RSV2_2)      0.06824        434        760    0.00120    0.36348 
+DeltaExchangeOperator(FrequenciesExchanger.s:RSV2_1)      0.07452        391        766    0.00120    0.33794 
+DeltaExchangeOperator(FrequenciesExchanger.s:RSV2_3)      0.06210        452        761    0.00120    0.37263 
 
      Tuning: The value of the operator's tuning parameter, or '-' if the operator can't be optimized.
     #accept: The total number of times a proposal by this operator has been accepted.
@@ -368,8 +371,8 @@ ScaleOperator(PopSizeScaler.t:tree)                       0.58627       9290    
   Pr(acc|m): The acceptance probability (#accept as a fraction of the total proposals for this operator).
 
 
-Total calculation time: 122.201 seconds
-End likelihood: -6088.148078992193
+Total calculation time: 120.762 seconds
+End likelihood: -6072.434319012309
 ```
 
 ## Analysing the BEAST output 
@@ -396,17 +399,18 @@ chain.
 Here you can see how the samples are correlated. There are 2000 samples
 in the trace (we ran the MCMC for steps sampling every 500) but adjacent
 samples often tend to have similar values. 
-The ESS for the `clockRate` is about `34`, after removing the first 10% of 
+The ESS for the `clockRate` is about `18`, after removing the first 10% of 
 the samples as burn-in.
-So we are only getting 1 independent sample to every `53 ~ 1800/34` actual samples). 
+So we are only getting 1 independent sample to every `100 ~ 1800/18` actual samples). 
 With a short run such as this one, it may also be the case that 
 the default burn-in (10%) of the chain length is inadequate. 
 Not excluding enough of the start of the chain as burn-in will render estimates of ESS unreliable.
 
 The simple response to this situation is that we need to run the chain for longer. 
-Given the lowest ESS (e.g., for the constant coalescent parameter) is `24`, 
-it would suggest that we have to run the chain for at least
-8 times the length to get reasonable ESSs that are `>200`. 
+Given the lowest ESS (e.g., for the constant coalescent parameter) is `11`, 
+it would suggest that we have to run a much longer chain (e.g. 18 times of the current length). 
+But this is a simple dataset, the length of 8 million would generate samples 
+providing the reasonable ESSs that are `>200`. 
 
 So let's go back to BEAUti, set the chain length to 8000000 and log every 4000 
 in the `MCMC` panel. We will also rename the log file to `RSV2-long.log`
