@@ -41,6 +41,13 @@ The following software will be used in this tutorial:
     is written for BEAST v`2.6.x`, which has support for multiple
     partitions. It is available for download from [http://www.beast2.org](http://www.beast2.org).
 
+-   **BEAST [CCD](https://github.com/CompEvol/CCD) package** - this package 
+    implements point estimators based on the conditional clade distribution (CCD),
+    which allows TreeAnnotator to produce better summary trees than via MCC trees 
+    (which is restricted to the sample).
+    It offers different parameterizations, such as CCD1, which is based on clade split frequencies, 
+    and CCD0, which is based on clade frequencies. It can be installed through Package Manager.
+
 -   **Tracer** - this program is used to explore the output of BEAST
     (and other Bayesian MCMC programs). It graphically and quantitively
     summarises the distributions of continuous parameters and provides
@@ -473,17 +480,32 @@ overlaid:
 
 ## Summarising trees 
 
-We will use the program `TreeAnnotator` to summarise the 
-maximum clade credibility (MCC) tree from the sampled trees (in
-the tree log file). 
-TreeAnnotator is an application that comes with BEAST.
-First of all, we need to set the burn-in percentage to `10`(%). 
-Then we select the `Node heights` to `Mean heights`,
-and provide input and output file names. 
-This will rescale the node height to reflect the posterior mean node heights 
-for the clades contained in the MCC tree.
-More details about settings are available from [here](https://www.beast2.org/treeannotator/).
+To summarise the trees logged during MCMC, 
+we will use the [CCD methods](https://doi.org/10.1101/2024.02.20.581316) 
+implemented in the program TreeAnnotator to create the maximum a posteriori (MAP) tree. 
+The implementation of the conditional clade distribution (CCD) offers different parameterizations, 
+such as CCD1, which is based on clade split frequencies, and CCD0, which is based on clade frequencies. 
+The MAP tree topology represents the tree topology with the highest posterior probability, 
+averaged over all branch lengths and substitution parameter values.
 
+You need to install [CCD package](https://github.com/CompEvol/CCD) to make the options 
+available in TreeAnnotator. 
+
+Please follow these steps after launching TreeAnnotator:
+
+1. Set 10% as the burn-in percentage;
+2. Select "MAP (CCD, AIC selected)" as the "Target tree type";
+3. For "Node heights", choose "Mean heights";
+4. Load the tree log file that BEAST 2 generated (it will end in ".trees" by default) 
+   as "Input Tree File". For this tutorial, the tree log file is called "RSV2-long.trees".
+   If you select it from the file chooser, the parent path will automatically fill in and 
+   "YOUR_PATH" in the screen shot will be that parent path.
+5. Finally, for "Output File", copy and paste the input file path but replace 
+   the file name "RSV2-long.trees" with "RSV2-ccd.tree". 
+   This will create the file containing the resulting MAP tree.
+
+The image below shows a screenshot of TreeAnnotator with the necessary settings to 
+create the summary tree. "YOUR_PATH" will be replaced to the corresponding path.
 
 <figure>
 	<img style="max-width:60.0%;" src="figures/treeannotator.png" alt="treeannotator">
@@ -496,9 +518,9 @@ More details about settings are available from [here](https://www.beast2.org/tre
 Summary trees can be viewed by `FigTree` (a program separate from BEAST) 
 and `DensiTree` (distributed with BEAST). 
 FigTree can only see one tree at a time, 
-so we normally use it to visualise the MCC tree.
+so we normally use it to visualise the summary tree.
 
-Let us open the MCC tree in `FigTree`. First, open the `Trees` tab on the left panel,
+Let us open the summary tree in `FigTree`. First, open the `Trees` tab on the left panel,
 and tick the checkbox `Order nodes`.
 Tick the checkbox of the `Node Bars` tab and open it. 
 By selecting `height_95%_HPD`, you will be able to display the 95% HPD-intervals on
@@ -511,15 +533,15 @@ set is from 2002.
 We can thus convert our node heights to years by subtracting their heights from 2002.
 
 <figure>
-	<img style="max-width:90%;" src="figures/RSV2_mcc_tree.png" alt="RSV2_mcc_tree">
-	<figcaption>Figure 16: The Maximum clade credibility tree for the G gene of 129 RSVA-2 viral samples.</figcaption>
+	<img style="max-width:90%;" src="figures/RSV2_ccd_tree.png" alt="RSV2 summary tree">
+	<figcaption>Figure 16: The summary tree for the G gene of 129 RSVA-2 viral samples.</figcaption>
 </figure>
 <br>
 
 Now load all your posterior trees to `DensiTree`.
 Click the `show` tab and tick the `Root Canal` checkbox.
 The "root canal tree", drawn in thick blue lines,
-represents the MCC tree.
+represents the summary tree.
 Open the `Grid` tab, choose `Short grid`, pick `Reverse` for the
 scale axis, and set the `Origin` to 2002. 
 Please be aware that the origin here means the date of the youngest tips.
