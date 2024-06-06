@@ -538,7 +538,7 @@ set is from 2002.
 We can thus convert our node heights to years by subtracting their heights from 2002.
 
 <figure>
-	<img style="max-width:90%;" src="figures/RSV2_ccd_tree.png" alt="RSV2 summary tree">
+	<img style="max-width:90%;" src="figures/RSV2_cdd0_tree.png" alt="RSV2 summary tree">
 	<figcaption>Figure 16: The summary tree for the G gene of 129 RSVA-2 viral samples.</figcaption>
 </figure>
 <br>
