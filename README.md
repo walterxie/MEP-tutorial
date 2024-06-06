@@ -494,14 +494,14 @@ available in TreeAnnotator.
 Please follow these steps after launching TreeAnnotator:
 
 1. Set 10% as the burn-in percentage;
-2. Select "MAP (CCD, AIC selected)" as the "Target tree type";
+2. Select "MAP (CCD0)" as the "Target tree type";
 3. For "Node heights", choose "Mean heights";
 4. Load the tree log file that BEAST 2 generated (it will end in ".trees" by default) 
    as "Input Tree File". For this tutorial, the tree log file is called "RSV2-long.trees".
    If you select it from the file chooser, the parent path will automatically fill in and 
    "YOUR_PATH" in the screen shot will be that parent path.
 5. Finally, for "Output File", copy and paste the input file path but replace 
-   the file name "RSV2-long.trees" with "RSV2-ccd.tree". 
+   the file name "RSV2-long.trees" with "RSV2-ccd0.tree". 
    This will create the file containing the resulting MAP tree.
 
 The image below shows a screenshot of TreeAnnotator with the necessary settings to 
@@ -512,6 +512,11 @@ create the summary tree. "YOUR_PATH" will be replaced to the corresponding path.
 	<figcaption>Figure 15: TreeAnnotator for creating a summary tree from a posterior tree set.</figcaption>
 </figure>
 <br>
+
+If you see any [negative branch lengths](https://www.beast2.org/summarizing-posterior-trees/) in the summarised tree, 
+you can change the "Node heights" option to use "Common Ancestor heights". 
+If you’re concerned about the differences between these two options, 
+you can run both and compare the resulting trees.
 
 ## Visualising trees
 
