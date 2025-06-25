@@ -3,7 +3,7 @@ author: Remco Bouckaert, Walter Xie, Fábio K. Mendes, and Alexei Drummond
 level: Beginner
 title: Time-stamped data
 subtitle: Time-stamped data
-beastversion: 2.6.4
+beastversion: 2.7.8
 ---
 
 # Time-stamped data
@@ -28,17 +28,16 @@ The aim of this tutorial is to estimate:
 
 -   the phylogenetic relationships with measures of statistical support.
 
-The following software will be used in this tutorial:
 
--   **Java 1.8** - either [Oracle Java](http://www.oracle.com/java/technologies/javase-downloads.html) 
-    or [OpenJDK](https://openjdk.java.net/install/).
-    If you are using a more recent version of Java than 1.8, 
-    it may affect BEAUti and some GUIs. 
-    In this case, we recommend you to download BEAST with JRE. 
+BEAST 2 requires [Zulu Java 17](https://www.azul.com/downloads/?version=java-17-lts&package=jdk-fx#zulu).
+However, if you download the official BEAST 2 release, it already includes Zulu Java 17. 
+No separate installation is needed.
+
+The following software will be used in this tutorial:
 
 -   **BEAST** - this package contains the BEAST program, BEAUti,
     DensiTree, TreeAnnotator and other utility programs. This tutorial
-    is written for BEAST v`2.6.x`, which has support for multiple
+    is written for BEAST v`2.7.x`, which has support for multiple
     partitions. It is available for download from [http://www.beast2.org](http://www.beast2.org).
 
 -   **BEAST [CCD](https://github.com/CompEvol/CCD) package** - this package 
