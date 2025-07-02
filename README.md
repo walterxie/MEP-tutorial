@@ -212,7 +212,7 @@ To do this, first switch to the `Site Model` panel,
 and then choose `HKY` from the `Subst Model` drop-boxes,
 and `Estimated` from the `Frequencies` drop-boxes. 
 Also remember to check the `estimate` checkbox for the `Substitution Rate`.
-After three [relative substitution rates](https://beast2-dev.github.io/hmc/hmc/SiteModel/mutationRate/) 
+After three [relative rates](https://beast2-dev.github.io/hmc/hmc/SiteModel/mutationRate/) 
 are all set to estimate, 
 it will eventually trigger to check the `Fix mean substitution rate` box.
 
@@ -477,7 +477,7 @@ whether they are comparable on the same axis or not). Select the
 relative rates for all three codon positions in the table
 to the left (labelled `mutationRate.1`, `mutationRate.2` and
 `mutationRate.3`). You will now see the posterior probability densities
-for the relative rate at all three codon positions overlaid:
+for the relative rates at all three codon positions overlaid:
 
 <figure>
 	<img style="max-width:80.0%;" src="figures/Tracer_relativeRates.png" alt="Tracer_relativeRates">
