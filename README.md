@@ -31,7 +31,7 @@ The aim of this tutorial is to estimate:
 
 BEAST 2 requires [Zulu Java 17](https://www.azul.com/downloads/?version=java-17-lts&package=jdk-fx#zulu).
 However, if you download the official BEAST 2 release, it already includes Zulu Java 17. 
-No separate installation is needed.
+No separate installation is needed. However, Tracer and FigTree require Java to be installed.
 
 The following software will be used in this tutorial:
 
@@ -51,12 +51,12 @@ The following software will be used in this tutorial:
     (and other Bayesian MCMC programs). It graphically and quantitively
     summarises the distributions of continuous parameters and provides
     diagnostic information. At the time of writing, the current version
-    is v`1.7.2`. It is available for download from
+    is v`1.7.3`, which requires Java 1.8 or higher. It is available for download from
     [http://beast.community/tracer](http://beast.community/tracer).
 
 -   **FigTree** - this is an application for displaying and printing
     molecular phylogenies, in particular those obtained using BEAST. At
-    the time of writing, the current version is v`1.4.4`. It is
+    the time of writing, the current version is v`1.4.4`, which requires Java 9 or higher. It is
     available for download from [http://beast.community/figtree](http://beast.community/figtree).
 
 -   **Beagle** (optional) - this is a high-performance library 
@@ -212,7 +212,8 @@ To do this, first switch to the `Site Model` panel,
 and then choose `HKY` from the `Subst Model` drop-boxes,
 and `Estimated` from the `Frequencies` drop-boxes. 
 Also remember to check the `estimate` checkbox for the `Substitution Rate`.
-After three relative rates are all set to estimate, 
+After three [relative substitution rates](https://beast2-dev.github.io/hmc/hmc/SiteModel/mutationRate/) 
+are all set to estimate, 
 it will eventually trigger to check the `Fix mean substitution rate` box.
 
 <figure>
