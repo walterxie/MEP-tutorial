@@ -216,6 +216,21 @@ After three [relative rates](https://beast2-dev.github.io/hmc/hmc/SiteModel/muta
 are all set to estimate, 
 it will eventually trigger to check the `Fix mean substitution rate` box.
 
+**Note on terminology:** In `Site Model` panel, the `Substitution Rate` can be confusing 
+compared to common usage in the literature. 
+It should really be called a relative rate (or partition relative rate).
+In the broader context, terms like mutation rate, substitution rate, 
+and molecular clock rate are often used interchangeably, 
+though they can differ in nuance: mutation rate is usually applied to population-level processes, 
+while substitution rate is preferred for deeper timescales involving fixation events 
+and assuming a single sequence for each species. 
+Under neutral theory, these rates are expected to be equal, but in practice, 
+they often differ because selection prevents many mutations from fixing. 
+To avoid making strong assumptions about neutrality, it is often clearer to refer simply to molecular clock rates. 
+Keep in mind that this BEAUti’s terminology is out of sync, 
+and future versions may adopt more standard naming conventions and explicitly distinguish relative rates to reduce confusion.
+
+
 <figure>
 	<img style="max-width:80.0%;" src="figures/BEAUti_Site_Model.png" alt="BEAUti_Site_Model">
 	<figcaption>Figure 6: Site model</figcaption>
